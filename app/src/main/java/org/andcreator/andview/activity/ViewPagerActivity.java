@@ -163,10 +163,13 @@ public class ViewPagerActivity extends AppCompatActivity {
     private void backAnimator(int start, final int end){
         ObjectAnimator animator = ObjectAnimator.ofFloat(pagerNumber, "translationY", 0,-260,-260,-260);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(pagerNumber, "alpha", 1,0);
-        animator.setDuration(500);
+        animator.setDuration(300);
         animator2.setDuration(300);
         animator.start();
         animator2.start();
+
+        animator.addListener(new AnimatorListenerAdapter() {
+        });
 
         animator.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -176,7 +179,7 @@ public class ViewPagerActivity extends AppCompatActivity {
                 ObjectAnimator animator = ObjectAnimator.ofFloat(pagerNumber, "translationY", 260,0,0,0);
                 ObjectAnimator animator2 = ObjectAnimator.ofFloat(pagerNumber, "alpha", 0,1);
                 animator.setDuration(400);
-                animator2.setDuration(300);
+                animator2.setDuration(400);
                 animator.start();
                 animator2.start();
             }
