@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 import org.andcreator.andview.R;
+import org.andcreator.andview.view.CircleWaveView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,14 +44,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CardView chat = findViewById(R.id.chat_layout);
         //ViewPager
         CardView pager = findViewById(R.id.pager_layout);
+        //CircleWave
+        CardView circle = findViewById(R.id.circle_layout);
+        //高斯模糊
+        CardView blur = findViewById(R.id.blur_layout);
+        //自定义LayoutManager
+        CardView recycler = findViewById(R.id.recycler_layout);
+
         ImageView chatImg = findViewById(R.id.chat_img);
         ImageView pagerImg = findViewById(R.id.pager_img);
+        ImageView circleImg = findViewById(R.id.circle_img);
+        ImageView blurImg = findViewById(R.id.blur_img);
+        ImageView recyclerImg = findViewById(R.id.recycler_img);
 
         Glide.with(this).load(R.drawable.a).into(chatImg);
         Glide.with(this).load(R.drawable.b).into(pagerImg);
+        Glide.with(this).load(R.drawable.a).into(circleImg);
+        Glide.with(this).load(R.drawable.b).into(blurImg);
+        Glide.with(this).load(R.drawable.a).into(recyclerImg);
 
         chat.setOnClickListener(this);
         pager.setOnClickListener(this);
+        circle.setOnClickListener(this);
+        blur.setOnClickListener(this);
+        recycler.setOnClickListener(this);
 
         //悬浮按钮旋转动画
         fabAnimator(fab);
@@ -95,12 +112,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this,ViewPagerActivity.class));
 
                 break;
+            case R.id.circle_layout:
 
-                default:
+                startActivity(new Intent(MainActivity.this,CircleWaveActivity.class));
+
+                break;
+            case R.id.blur_layout:
+
+                startActivity(new Intent(MainActivity.this,BlurActivity.class));
+
+                break;
+            case R.id.recycler_layout:
+
+                startActivity(new Intent(MainActivity.this,RecyclerActivity.class));
+
+                break;
+            default:
                     break;
         }
     }
-
 
     /****************
      *
