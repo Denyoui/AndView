@@ -8,23 +8,30 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import org.andcreator.andview.R;
+import org.andcreator.andview.adapter.SatelliteAdapter;
 import org.andcreator.andview.view.CircleWaveView;
+import org.andcreator.andview.view.SatelliteView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FloatingActionButton fab;
+//    private FloatingActionButton fab;
+    private SatelliteView satelliteView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void intoView() {
 
-        fab = findViewById(R.id.fab);
+//        fab = findViewById(R.id.fab);
         //对话界面
         CardView chat = findViewById(R.id.chat_layout);
         //ViewPager
@@ -69,24 +76,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         blur.setOnClickListener(this);
         recycler.setOnClickListener(this);
 
-        //悬浮按钮旋转动画
-        fabAnimator(fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                joinQQGroup("a-pWwOHzOhvaQQeYtr9oPbYxuIF7VTT9");
-            }
-        });
 
-        fab.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                // 未安装手Q或安装的版本不支持
-                Snackbar.make(fab, "加入创艺者QQ群", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                return true;
-            }
-        });
+        satelliteView = (SatelliteView) findViewById(R.id.fab);
+        satelliteView.setAdapter(getAdapter());
+        satelliteView.setRadius(200);
+
+        //悬浮按钮旋转动画
+//        fabAnimator(fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                joinQQGroup("a-pWwOHzOhvaQQeYtr9oPbYxuIF7VTT9");
+//            }
+//        });
+//
+//        fab.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                // 未安装手Q或安装的版本不支持
+//                Snackbar.make(fab, "加入创艺者QQ群", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//                return true;
+//            }
+//        });
     }
 
     //悬浮按钮旋转动画
@@ -154,9 +166,79 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             cmb.setText("677026563");
 
             // 未安装手Q或安装的版本不支持
-            Snackbar.make(fab, "未安装QQ或安装的版本不支持,群号已复制到剪贴板", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Toast.makeText(this, "未安装QQ或安装的版本不支持,群号已复制到剪贴板", Toast.LENGTH_SHORT).show();
             return false;
         }
+    }
+
+    private void startHttp(String uri){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(uri));
+        startActivity(intent);
+    }
+
+    @NonNull
+    private SatelliteAdapter getAdapter() {
+        return new SatelliteAdapter() {
+            @Override
+            public View createMenuItem(ViewGroup parent, int index) {
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_menu_item, parent, false);
+
+                FloatingActionButton fab = v.findViewById(R.id.fabs);
+                if (index == 1){
+                    fab.setImageResource(R.drawable.ic_group_work_white_24dp);
+                    fab.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            satelliteView.close();
+                            joinQQGroup("a-pWwOHzOhvaQQeYtr9oPbYxuIF7VTT9");
+                        }
+                    });
+                }else if (index == 0){
+                    fab.setImageResource(R.drawable.ic_code_black_24dp);
+                    fab.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            satelliteView.close();
+                            startHttp("https://github.com/hujincan/AndView");
+                        }
+                    });
+                }else if (index == 2){
+                    fab.setImageResource(R.drawable.ic_bug_report_black_24dp);
+                    fab.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            satelliteView.close();
+                            startHttp("https://nightfarmer.top");
+                        }
+                    });
+                }else if (index == 3){
+                    fab.setImageResource(R.drawable.l);
+                    fab.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            satelliteView.close();
+                            startHttp("https://www.lollipoppp.com/");
+                        }
+                    });
+                }
+
+                return v;
+            }
+
+            @Override
+            public View createToggleItem(ViewGroup parent) {
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_menu_toggle, parent, false);
+                FloatingActionButton fab = v.findViewById(R.id.toggle);
+                fab.setImageResource(R.drawable.ic_toys_black_24dp);
+                fabAnimator(fab);
+                return v;
+            }
+
+            @Override
+            public int getCount() {
+                return 4;
+            }
+        };
     }
 }
