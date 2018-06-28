@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.AnimatorActivity"
+    tools:showIn="@layout/activity_animator">
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#4caf50"
+        android:textColor="@color/white"
+        android:text="alpha"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#26a69a"
+        android:textColor="@color/white"
+        android:text="rotation"/>
+
+    <TextView
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00acc1"
+        android:textColor="@color/white"
+        android:layout_margin="6dp"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:text="rotationX"
+        android:textAllCaps="true"/>
+
+    <TextView
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#03a9f4"
+        android:textColor="@color/white"
+        android:layout_margin="6dp"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:text="rotationY"
+        android:textAllCaps="true"/>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#42a5f5"
+        android:textColor="@color/white"
+        android:text="translationX"/>
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#5c6bc0"
+        android:textColor="@color/white"
+        android:text="translationY"/>
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#9575cd"
+        android:textColor="@color/white"
+        android:text="scaleX"/>
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#ba68c8"
+        android:textColor="@color/white"
+        android:text="scaleY"/>
+
+    <TextView
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ec407a"
+        android:textColor="@color/white"
+        android:layout_margin="6dp"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:text="background Color"
+        android:textAllCaps="true"/>
+
+</LinearLayout>

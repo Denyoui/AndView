@@ -284,22 +284,22 @@ public class MessageBox extends ViewGroup {
     public static class LayoutParams extends MarginLayoutParams {
 
 
-        public LayoutParams(Context c, AttributeSet attrs) {
+        LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
         }
 
 
-        public LayoutParams(int width, int height) {
+        LayoutParams(int width, int height) {
             super(width, height);
         }
 
 
-        public LayoutParams(ViewGroup.LayoutParams source) {
+        LayoutParams(ViewGroup.LayoutParams source) {
             super(source);
         }
 
 
-        public LayoutParams(ViewGroup.MarginLayoutParams source) {
+        LayoutParams(ViewGroup.MarginLayoutParams source) {
             super(source);
         }
     }

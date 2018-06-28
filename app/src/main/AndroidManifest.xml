@@ -42,6 +42,14 @@
         <activity
             android:name=".activity.RecyclerActivity"
             android:label="@string/title_activity_recycler"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.AnimatorActivity"
+            android:label="@string/title_activity_animator"
             android:theme="@style/AppTheme"></activity>
     </application>
 

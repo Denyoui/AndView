@@ -57,24 +57,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CardView blur = findViewById(R.id.blur_layout);
         //自定义LayoutManager
         CardView recycler = findViewById(R.id.recycler_layout);
-
-        ImageView chatImg = findViewById(R.id.chat_img);
-        ImageView pagerImg = findViewById(R.id.pager_img);
-        ImageView circleImg = findViewById(R.id.circle_img);
-        ImageView blurImg = findViewById(R.id.blur_img);
-        ImageView recyclerImg = findViewById(R.id.recycler_img);
-
-        Glide.with(this).load(R.drawable.a).into(chatImg);
-        Glide.with(this).load(R.drawable.b).into(pagerImg);
-        Glide.with(this).load(R.drawable.a).into(circleImg);
-        Glide.with(this).load(R.drawable.b).into(blurImg);
-        Glide.with(this).load(R.drawable.a).into(recyclerImg);
+        //ScrollingLayout
+        CardView scrolling = findViewById(R.id.scrolling_layout);
+        //Animator
+        CardView animator = findViewById(R.id.animator_layout);
 
         chat.setOnClickListener(this);
         pager.setOnClickListener(this);
         circle.setOnClickListener(this);
         blur.setOnClickListener(this);
         recycler.setOnClickListener(this);
+        scrolling.setOnClickListener(this);
+        animator.setOnClickListener(this);
 
 
         satelliteView = (SatelliteView) findViewById(R.id.fab);
@@ -137,6 +131,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.recycler_layout:
 
                 startActivity(new Intent(MainActivity.this,RecyclerActivity.class));
+
+                break;
+            case R.id.scrolling_layout:
+
+                startActivity(new Intent(MainActivity.this,ScrollingActivity.class));
+
+                break;
+            case R.id.animator_layout:
+
+                startActivity(new Intent(MainActivity.this,AnimatorActivity.class));
 
                 break;
             default:
