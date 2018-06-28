@@ -175,7 +175,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/n_layout"
+                android:id="@+id/color_pager_layout"
                 android:layout_height="180dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -189,7 +189,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#fff"
-                    android:text=""/>
+                    android:text="ColorPager"/>
 
             </android.support.v7.widget.CardView>
 

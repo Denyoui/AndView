@@ -50,6 +50,10 @@
         <activity
             android:name=".activity.AnimatorActivity"
             android:label="@string/title_activity_animator"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ColorPagerActivity"
+            android:label="@string/title_activity_color_pager"
             android:theme="@style/AppTheme"></activity>
     </application>
 

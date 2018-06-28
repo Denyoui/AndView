@@ -97,4 +97,8 @@
     </string>
     <string name="title_activity_button">ButtonActivity</string>
     <string name="title_activity_animator">AnimatorActivity</string>
+    <string name="title_activity_color_pager">ColorPagerActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#00ffffff"
+    tools:context=".fragment.ViewPagerFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="160dp"
+        android:layout_height="160dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Welcome to AndView"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:layout_gravity="center"
+        android:shadowColor="#ff000000"
+        android:shadowRadius="2"
+        android:shadowDx="2"
+        android:shadowDy="2"/>
+
+</LinearLayout>
