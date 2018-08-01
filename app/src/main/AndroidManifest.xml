@@ -54,7 +54,8 @@
         <activity
             android:name=".activity.ColorPagerActivity"
             android:label="@string/title_activity_color_pager"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.GradientActivity"></activity>
     </application>
 
 </manifest>

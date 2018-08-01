@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CardView animator = findViewById(R.id.animator_layout);
         //ColorViewPager
         CardView colorPager = findViewById(R.id.color_pager_layout);
+        //Gradient
+        CardView gradient = findViewById(R.id.gradient_layout);
 
         chat.setOnClickListener(this);
         pager.setOnClickListener(this);
@@ -72,9 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         scrolling.setOnClickListener(this);
         animator.setOnClickListener(this);
         colorPager.setOnClickListener(this);
+        gradient.setOnClickListener(this);
 
 
-        satelliteView = (SatelliteView) findViewById(R.id.fab);
+        satelliteView = findViewById(R.id.fab);
         satelliteView.setAdapter(getAdapter());
         satelliteView.setRadius(200);
 
@@ -149,6 +152,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.color_pager_layout:
 
                 startActivity(new Intent(MainActivity.this,ColorPagerActivity.class));
+
+                break;
+            case R.id.gradient_layout:
+
+                startActivity(new Intent(MainActivity.this,GradientActivity.class));
 
                 break;
             default:
