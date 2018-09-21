@@ -282,28 +282,31 @@ public class ChatActivity extends AppCompatActivity implements View.OnLayoutChan
     private List<RecyclerChatBean> listChat() {
         mListChat = new ArrayList<>();
 
-        RecyclerChatBean a = new RecyclerChatBean(1,R.drawable.icon,"联通验证码：391607，你正在激活哔哩哔哩卡专属流量免费服务，输入验证码即享哔哩哔哩客户端专属流量免费",px2sp(ChatActivity.this,input.getTextSize()));
+        RecyclerChatBean a = new RecyclerChatBean(1,R.drawable.icon,"主界面向上拖动有惊喜哦",px2sp(ChatActivity.this,input.getTextSize()));
         mListChat.add(a);
 
-        RecyclerChatBean b = new RecyclerChatBean(2,R.drawable.icon,"Ok，完全Ok！",px2sp(ChatActivity.this,input.getTextSize()));
+        RecyclerChatBean b = new RecyclerChatBean(2,R.drawable.icon,"这设计我也是醉了",px2sp(ChatActivity.this,input.getTextSize()));
         mListChat.add(b);
 
-        RecyclerChatBean c = new RecyclerChatBean(2,R.drawable.icon,"不敢相信，验证码错误！！",px2sp(ChatActivity.this,input.getTextSize()));
+        RecyclerChatBean c = new RecyclerChatBean(2,R.drawable.icon,"Logo挺漂亮的吖",px2sp(ChatActivity.this,input.getTextSize()));
         mListChat.add(c);
-        RecyclerChatBean d = new RecyclerChatBean(1,R.drawable.icon,"这里是Bilibli客服，不好意思，这是逗你玩的呢，下面才是正真的验证码",px2sp(ChatActivity.this,input.getTextSize()));
+        RecyclerChatBean d = new RecyclerChatBean(1,R.drawable.icon,"过奖过奖",px2sp(ChatActivity.this,input.getTextSize()));
         mListChat.add(d);
 
-        RecyclerChatBean e = new RecyclerChatBean(1,R.drawable.icon,"联通验证码：391607，你正在激活哔哩哔哩卡专属流量免费服务，输入验证码即享哔哩哔哩客户端专属流量免费",px2sp(ChatActivity.this,input.getTextSize()));
+        RecyclerChatBean e = new RecyclerChatBean(1,R.drawable.icon,"您可以试试下面的相机按钮，可以拍照的哦",px2sp(ChatActivity.this,input.getTextSize()));
         mListChat.add(e);
 
-        RecyclerChatBean f = new RecyclerChatBean(2,R.drawable.icon,"好了，终于可以开始刷b站了，我要看郭杰瑞的视频！",px2sp(ChatActivity.this,input.getTextSize()));
+        RecyclerChatBean f = new RecyclerChatBean(2,R.drawable.icon,"我试试，",px2sp(ChatActivity.this,input.getTextSize()));
         mListChat.add(f);
 
-        RecyclerChatBean g = new RecyclerChatBean(1,R.drawable.icon,"不好意思，您的余额已不足1元！60秒后将限制您的网络流量",px2sp(ChatActivity.this,input.getTextSize()));
+        RecyclerChatBean g = new RecyclerChatBean(1,R.drawable.icon,"求捐赠ヾ(✿ﾟ▽ﾟ)ノ",px2sp(ChatActivity.this,input.getTextSize()));
         mListChat.add(g);
 
-        RecyclerChatBean h = new RecyclerChatBean(2,R.drawable.icon,"迟早都要死在这破站",px2sp(ChatActivity.this,input.getTextSize()));
+        RecyclerChatBean h = new RecyclerChatBean(2,R.drawable.icon,"已转入0.99$",px2sp(ChatActivity.this,input.getTextSize()));
         mListChat.add(h);
+
+        RecyclerChatBean i = new RecyclerChatBean(1,R.drawable.icon,"Wow！太感谢了٩(๑❛ᴗ❛๑)۶٩(๑❛ᴗ❛๑)۶",px2sp(ChatActivity.this,input.getTextSize()));
+        mListChat.add(i);
 
         return mListChat;
     }

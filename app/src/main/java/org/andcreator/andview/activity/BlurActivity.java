@@ -14,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -71,6 +72,7 @@ public class BlurActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
+                            Log.e("55555555555",i+"");
                             Bitmap bitmap1 = blurBitmap(BlurActivity.this, bitmap, 25f*i/100, 1f);
                             showBitmap = bitmap1;
                             num = (int) (25f*i/100);
@@ -122,6 +124,7 @@ public class BlurActivity extends AppCompatActivity {
      * @return 模糊的图片
      */
     public static Bitmap blurBitmap(Context context, Bitmap image, float radius, float scale) {
+        Log.e("66666666666",radius+"");
         // 计算图片缩小后的长宽
         int width = Math.round(image.getWidth() * scale);
         int height = Math.round(image.getHeight() * scale);

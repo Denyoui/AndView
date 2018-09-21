@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_layout"
+        android:icon="@drawable/ic_view_carousel_black_24dp"
+        android:title="布局&amp;UI" />
+
+    <item
+        android:id="@+id/navigation_view"
+        android:icon="@drawable/ic_change_history_black_24dp"
+        android:title="控件" />
+
+    <item
+        android:id="@+id/navigation_effect"
+        android:icon="@drawable/ic_fiber_smart_record_black_24dp"
+        android:title="效果" />
+    <item
+        android:id="@+id/navigation_contributor"
+        android:icon="@drawable/ic_polymer_black_24dp"
+        android:title="贡献者" />
+
+</menu>

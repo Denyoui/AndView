@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndView</string>
+    <string name="app_name">Open Design</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_chat">对话</string>
     <string name="title_activity_circle_wave">涟漪</string>
@@ -99,6 +99,21 @@
     <string name="title_activity_animator">AnimatorActivity</string>
     <string name="title_activity_color_pager">ColorPagerActivity</string>
 
+    <string name="transition_icon">contributor_icon</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="change_theme_items">
+        <item>折叠布局</item>
+        <item>标签布局</item>
+    </string-array>
+
+    <string-array name="change_theme_list_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string name="title_activity_contributor">ContributorActivity</string>
+
 </resources>

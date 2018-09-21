@@ -21,4 +21,26 @@
         <attr name="arrowDirection" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="AvatarImageBehavior">
+        <attr name="finalYPosition" format="dimension"/>
+        <attr name="startXPosition" format="dimension"/>
+        <attr name="startToolbarPosition" format="dimension"/>
+        <attr name="startHeight" format="dimension"/>
+        <attr name="finalHeight" format="dimension"/>
+    </declare-styleable>
+
+
+
+    <!-- AvatarImageBehavior -->
+    <declare-styleable name="AvatarBehavior">
+        <attr name="finalYyPosition" format="dimension" />
+        <attr name="startXxPosition" format="dimension" />
+        <attr name="startToolbarPositions" format="dimension" />
+        <attr name="startHeights" format="dimension" />
+        <attr name="finalHeights" format="dimension" />
+        <attr name="finalSize" format="dimension" />
+        <attr name="finalXx" format="dimension" />
+        <attr name="toolBarHeight" format="dimension" />
+    </declare-styleable>
+
 </resources>
