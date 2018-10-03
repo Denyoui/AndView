@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp">
+
+    <org.andcreator.andview.view.Rounded
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        app:roundedColor="@color/colorPrimary"
+        app:layoutCenter="true">
+
+        <TextView
+            android:id="@+id/group_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+
+    </org.andcreator.andview.view.Rounded>
+
+</RelativeLayout>

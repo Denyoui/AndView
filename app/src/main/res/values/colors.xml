@@ -10,7 +10,7 @@
     <color name="black_text">#222222</color>
     <color name="text_color">#666666</color>
 
-    <color name="translucent">#7d000000</color>
+    <color name="translucent">#00000000</color>
     <color name="transparent">#7d000000</color>
     <color name="tabSelectedIconColor">#07A487</color>
     <color name="tabUnselectedIconColor">#607d8b</color>

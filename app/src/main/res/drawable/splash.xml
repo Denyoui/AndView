@@ -3,10 +3,11 @@
 <!--背景色-->
 <item android:drawable="@color/white"/>
 <item>
+
     <!--图片-->
     <bitmap
         android:gravity="center"
-        android:src="@drawable/ic_launch">
+        android:src="@drawable/ic_launch_152px">
     </bitmap>
 </item>
 

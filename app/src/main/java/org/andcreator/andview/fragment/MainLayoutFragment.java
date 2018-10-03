@@ -16,7 +16,9 @@ import android.view.ViewGroup;
 import org.andcreator.andview.R;
 import org.andcreator.andview.activity.ChatActivity;
 import org.andcreator.andview.activity.ColorPagerActivity;
+import org.andcreator.andview.activity.FoldActivity;
 import org.andcreator.andview.activity.GradientActivity;
+import org.andcreator.andview.activity.PixelLauncherActivity;
 import org.andcreator.andview.activity.RecyclerActivity;
 import org.andcreator.andview.activity.ScrollingActivity;
 import org.andcreator.andview.activity.ViewPagerActivity;
@@ -76,6 +78,12 @@ public class MainLayoutFragment extends Fragment {
                         break;
                     case 5:
                         startActivity(new Intent(getActivity(),GradientActivity.class));
+                        break;
+                    case 7:
+                        startActivity(new Intent(getActivity(),FoldActivity.class));
+                        break;
+                    case 6:
+                        startActivity(new Intent(getActivity(),PixelLauncherActivity.class));
                         break;
                         default:
                             break;

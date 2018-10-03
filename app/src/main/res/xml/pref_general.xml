@@ -34,7 +34,7 @@
             android:icon="@drawable/ic_code_attrs_24dp">
         </PreferenceScreen>
         <PreferenceScreen
-            android:title="关于OpenUI"
+            android:title="关于Open Design"
             android:icon="@drawable/ic_error_attrs_24dp">
         </PreferenceScreen>
         <PreferenceScreen

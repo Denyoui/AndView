@@ -123,6 +123,7 @@ public class AvatarBehavior extends CoordinatorLayout.Behavior<CircleImageView> 
                 mFinalView.setLayoutParams(params);
                 mFinalView.setImageDrawable(child.getDrawable());
                 mFinalView.setBorderColor(child.getBorderColor());
+                mFinalView.setFillColor(child.getBorderColor());
                 int borderWidth = (int) ((mFinalSize * 1.0f / mOriginalSize) * child.getBorderWidth());
                 mFinalView.setBorderWidth(borderWidth);
             }

@@ -6,7 +6,9 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.Application;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -71,13 +73,14 @@ import org.andcreator.andview.fragment.MainEffectFragment;
 import org.andcreator.andview.fragment.MainLayoutFragment;
 import org.andcreator.andview.fragment.MainViewFragment;
 import org.andcreator.andview.uilt.BottomNavigationViewHelper;
+import org.andcreator.andview.uilt.OtherUtil;
 import org.andcreator.andview.view.CircleWaveView;
 import org.andcreator.andview.view.SatelliteView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Application.OnProvideAssistDataListener {
 
 //    private FloatingActionButton fab;
     private SatelliteView satelliteView;
@@ -174,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
         initView();
+
+        Toast.makeText(this, OtherUtil.getSDLogPath()+"", Toast.LENGTH_LONG).show();
     }
 
 
@@ -454,6 +459,11 @@ public class MainActivity extends AppCompatActivity {
         }else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onProvideAssistData(Activity activity, Bundle data) {
+
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

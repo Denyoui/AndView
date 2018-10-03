@@ -1,17 +1,23 @@
 package org.andcreator.andview.fragment;
 
 
+import android.app.WallpaperManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.andcreator.andview.R;
 import org.andcreator.andview.activity.AnimatorActivity;
@@ -20,11 +26,14 @@ import org.andcreator.andview.activity.ChatActivity;
 import org.andcreator.andview.activity.CircleWaveActivity;
 import org.andcreator.andview.activity.ColorPagerActivity;
 import org.andcreator.andview.activity.GradientActivity;
+import org.andcreator.andview.activity.MainActivity;
 import org.andcreator.andview.activity.RecyclerActivity;
+import org.andcreator.andview.activity.ScreenshotActivity;
 import org.andcreator.andview.activity.ScrollingActivity;
 import org.andcreator.andview.activity.ViewPagerActivity;
 import org.andcreator.andview.adapter.RecyclerMainLayoutAdapter;
 import org.andcreator.andview.bean.RecyclerMainLayoutBean;
+import org.andcreator.andview.service.VideoWallPaperService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +80,32 @@ public class MainEffectFragment extends Fragment {
                         break;
                     case 1:
                         startActivity(new Intent(getActivity(),AnimatorActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(Settings.ACTION_VOICE_INPUT_SETTINGS));
+                        break;
+                    case 3:
+                        startActivity(new Intent(getActivity(),ScreenshotActivity.class));
+                        break;
+                    case 4:
+                        AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(getActivity());
+                        builder.setTitle("错误报告");
+                        builder.setMessage("点击测试按钮使应用崩溃，崩溃日志会保存在sdcard根目录");
+                        builder.setPositiveButton("测试", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        builder.show();
+                        break;
+                    case 7:
+                        Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+                        intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,new ComponentName(getActivity(), VideoWallPaperService.class));
+                        startActivity(intent);
+                        break;
+                    case 6:
+                        Toast.makeText(getActivity(), "555", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;

@@ -25,7 +25,7 @@ public class ColorPagerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_pager);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
@@ -35,7 +35,7 @@ public class ColorPagerActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
 
-        int[] colorArray = {0xff4caf50,0xffec407a,0xff1e88e5,0xffff8f00};
+        int[] colorArray = {0xff4caf50,0xff1e88e5,0xffec407a,0xffff8f00};
 
         viewPager.addOnPageChangeListener(new GradientBgUtil(colorArray,viewPager));
     }
@@ -43,8 +43,8 @@ public class ColorPagerActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ViewPagerFragment(),"绿");
-        adapter.addFragment(new ViewPagerFragment(),"红");
         adapter.addFragment(new ViewPagerFragment(),"蓝");
+        adapter.addFragment(new ViewPagerFragment(),"红");
         adapter.addFragment(new ViewPagerFragment(),"黄");
         viewPager.setAdapter(adapter);
     }

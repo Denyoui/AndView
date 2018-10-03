@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    tools:context=".activity.FoldActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".activity.MainActivity"
+        tools:showIn="@layout/activity_main">
+
+        <LinearLayout
+            android:id="@+id/view_a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_gravity="center_horizontal">
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="8dp"
+                android:layout_gravity="center_horizontal">
+
+                <RadioButton
+                    android:id="@+id/layouts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textSize="16sp"
+                    android:text="  布局&amp;UI"
+                    android:textColor="@color/white"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:layout_gravity="center_horizontal"
+                    android:button="@null"
+                    android:background="@drawable/radio"
+                    android:drawableLeft="@drawable/ic_view_carousel_black_24dp"
+                    android:drawableTint="@color/white"
+                    android:layout_margin="2dp"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:id="@+id/views"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textSize="16sp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:text="  控件"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_horizontal"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/ic_change_history_black_24dp"
+                    android:drawableTint="@color/white"
+                    android:background="@drawable/radio"
+                    android:layout_margin="2dp"/>
+
+                <RadioButton
+                    android:id="@+id/effects"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textSize="16sp"
+                    android:text="  效果"
+                    android:textColor="@color/white"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:layout_gravity="center_horizontal"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/ic_fiber_smart_record_black_24dp"
+                    android:drawableTint="@color/white"
+                    android:background="@drawable/radio"
+                    android:layout_margin="2dp"/>
+
+                <RadioButton
+                    android:id="@+id/contributors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textSize="16sp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:text="  贡献者"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_horizontal"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/ic_polymer_black_24dp"
+                    android:drawableTint="@color/white"
+                    android:background="@drawable/radio"
+                    android:layout_margin="2dp"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/view_b"
+            android:layout_width="match_parent"
+            android:layout_height="800dp"
+            android:background="@drawable/main_background">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_star_white_24dp" />
+
+</android.support.design.widget.CoordinatorLayout>
