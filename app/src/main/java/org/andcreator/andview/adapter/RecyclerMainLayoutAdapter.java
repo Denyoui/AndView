@@ -83,7 +83,7 @@ public class RecyclerMainLayoutAdapter extends RecyclerView.Adapter<RecyclerMain
         //申明一个数据绑定方法，只要求外部传入bean，绑定方式由自己决定
         void onBind(RecyclerMainLayoutBean bean,Context context,LayoutInflater layoutInflater,List<RecyclerContributorIconBean> contributorList){
 
-            Animator animator = ObjectAnimator.ofFloat(cardView, "translationY", -140,0);
+            Animator animator = ObjectAnimator.ofFloat(cardView, "translationY", 140,0);
             animator.setDuration(400).start();
 
             title.setText(bean.getTitle());

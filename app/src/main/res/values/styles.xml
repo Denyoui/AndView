@@ -21,6 +21,18 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.Light" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/white</item>
         <!--<item name="android:windowTranslucentStatus">true</item>-->
     </style>
 
@@ -34,6 +46,9 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
     </style>
 
 
@@ -43,8 +58,7 @@
         <item name="android:windowShowWallpaper">true</item>
     </style>
 
-    <style name="AppTheme.Launcher" parent="@style/BaseWallpaperTheme">
-    </style>
+    <style name="AppTheme.Launcher" parent="@style/BaseWallpaperTheme"></style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -64,6 +78,11 @@
         <item name="android:textColorPrimary">@color/black_text</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowNoTitle">true</item><!-- Activity无标题-->
+    </style>
+
+    <style name="TextLabel" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorControlActivated">#fff</item>
     </style>
 
 </resources>

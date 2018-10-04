@@ -21,6 +21,7 @@ import org.andcreator.andview.activity.CircleWaveActivity;
 import org.andcreator.andview.activity.ColorPagerActivity;
 import org.andcreator.andview.activity.GradientActivity;
 import org.andcreator.andview.activity.RecyclerActivity;
+import org.andcreator.andview.activity.SatelliteActivity;
 import org.andcreator.andview.activity.ScrollingActivity;
 import org.andcreator.andview.activity.ViewPagerActivity;
 import org.andcreator.andview.adapter.RecyclerMainLayoutAdapter;
@@ -65,6 +66,9 @@ public class MainViewFragment extends Fragment {
                 switch (position){
                     case 0:
                         startActivity(new Intent(getActivity(),CircleWaveActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(getActivity(),SatelliteActivity.class));
                         break;
                     default:
                         break;

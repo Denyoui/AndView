@@ -89,12 +89,12 @@ public class MainEffectFragment extends Fragment {
                         break;
                     case 4:
                         AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(getActivity());
-                        builder.setTitle("错误报告");
+                        builder.setTitle("#错误报告");
                         builder.setMessage("点击测试按钮使应用崩溃，崩溃日志会保存在sdcard根目录");
                         builder.setPositiveButton("测试", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                exception();
                             }
                         });
                         builder.show();
@@ -133,18 +133,21 @@ public class MainEffectFragment extends Fragment {
         return view;
     }
 
-
     private List<RecyclerMainLayoutBean> loadData() {
         data = new ArrayList<>();
         data.add(new RecyclerMainLayoutBean("高斯模糊", "对图片进行高斯模糊处理", new int[]{R.drawable.night_farmer}));
         data.add(new RecyclerMainLayoutBean("ObjectAnimator", "ObjectAnimator的简单使用演示", new int[]{R.drawable.and}));
         data.add(new RecyclerMainLayoutBean("Android助手应用[长按Home键]", "助手应用功能的简单使用演示，不建议用于全屏应用", new int[]{R.drawable.and}));
         data.add(new RecyclerMainLayoutBean("捕获屏幕内容", "调用系统截屏", new int[]{R.drawable.and}));
-        data.add(new RecyclerMainLayoutBean("打印程序Log并保持到Sdcard", "捕获Logcat，可用于反馈bug", new int[]{R.drawable.and}));
+        data.add(new RecyclerMainLayoutBean("打印程序Log并保持到Sdcard", "捕获Logcat，可用于反馈bug", new int[]{R.drawable.lollipop}));
         data.add(new RecyclerMainLayoutBean("获取图片主题颜色", "Palette库的简单使用", new int[]{R.drawable.and}));
         data.add(new RecyclerMainLayoutBean("从设备中选择各种类型的文件", "选择图片，文本，视频，音乐等等", new int[]{R.drawable.and}));
         data.add(new RecyclerMainLayoutBean("将视频作为壁纸", "使用一段视频作为桌面壁纸", new int[]{R.drawable.and}));
         return data;
+    }
+
+    public void exception(){
+        int i = 0/0;
     }
 
     //修改onButtonPressed方法的参数为int类型

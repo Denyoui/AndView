@@ -82,11 +82,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Application.OnProvideAssistDataListener {
 
-//    private FloatingActionButton fab;
-    private SatelliteView satelliteView;
     private int mViewPagerIndex;
-    private int mViewPagerPosition;
-    private int uiFlag = 0;
+    private long mPressedTime = 0;
 
     private Bitmap bitmap;
     private ImageView background;
@@ -457,7 +454,25 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         if (isOpen){
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }else {
-            super.onBackPressed();
+            int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
+            if (backStackEntryCount == 0){
+                long mNowTime = System.currentTimeMillis();//获取第一次按键时间
+
+                if((mNowTime - mPressedTime) > 1450){//比较两次按键时间差
+
+                    Snackbar snackbar = Snackbar.make(fam, R.string.app_exit, Snackbar.LENGTH_SHORT);
+                    View view = snackbar.getView();
+                    view.setBackgroundColor(getResources().getColor(R.color.white));
+                    snackbar.show();
+
+                    mPressedTime = mNowTime;
+                } else{
+                    //退出程序
+                    finish();
+                }
+            }else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -476,71 +491,6 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
 
             }
         }
-    }
-
-//    private void intoView() {
-//
-////        fab = findViewById(R.id.fab);
-//        //对话界面
-//        CardView chat = findViewById(R.id.chat_layout);
-//        //ViewPager
-//        CardView pager = findViewById(R.id.pager_layout);
-//        //CircleWave
-//        CardView circle = findViewById(R.id.circle_layout);
-//        //高斯模糊
-//        CardView blur = findViewById(R.id.blur_layout);
-//        //自定义LayoutManager
-//        CardView recycler = findViewById(R.id.recycler_layout);
-//        //ScrollingLayout
-//        CardView scrolling = findViewById(R.id.scrolling_layout);
-//        //Animator
-//        CardView animator = findViewById(R.id.animator_layout);
-//        //ColorViewPager
-//        CardView colorPager = findViewById(R.id.color_pager_layout);
-//        //Gradient
-//        CardView gradient = findViewById(R.id.gradient_layout);
-//
-//        chat.setOnClickListener(this);
-//        pager.setOnClickListener(this);
-//        circle.setOnClickListener(this);
-//        blur.setOnClickListener(this);
-//        recycler.setOnClickListener(this);
-//        scrolling.setOnClickListener(this);
-//        animator.setOnClickListener(this);
-//        colorPager.setOnClickListener(this);
-//        gradient.setOnClickListener(this);
-//
-//
-//        satelliteView = findViewById(R.id.fab);
-//        satelliteView.setAdapter(getAdapter());
-//        satelliteView.setRadius(200);
-//
-//        //悬浮按钮旋转动画
-////        fabAnimator(fab);
-////        fab.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View view) {
-////                joinQQGroup("a-pWwOHzOhvaQQeYtr9oPbYxuIF7VTT9");
-////            }
-////        });
-////
-////        fab.setOnLongClickListener(new View.OnLongClickListener() {
-////            @Override
-////            public boolean onLongClick(View view) {
-////                // 未安装手Q或安装的版本不支持
-////                Snackbar.make(fab, "加入创艺者QQ群", Snackbar.LENGTH_LONG)
-////                        .setAction("Action", null).show();
-////                return true;
-////            }
-////        });
-//    }
-
-    //悬浮按钮旋转动画
-    private void fabAnimator(View view){
-        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "rotation", 0,360);
-        animator.setDuration(800);
-        animator.setInterpolator(new AnticipateInterpolator());
-        animator.start();
     }
 
     /**
@@ -608,58 +558,6 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
                 });
     }
 
-//    @Override
-//    public void onClick(View view) {
-//        switch (view.getId()){
-//            case R.id.chat_layout:
-//
-//                startActivity(new Intent(MainActivity.this,ChatActivity.class));
-//
-//                break;
-//            case R.id.pager_layout:
-//
-//                startActivity(new Intent(MainActivity.this,ViewPagerActivity.class));
-//
-//                break;
-//            case R.id.circle_layout:
-//
-//                startActivity(new Intent(MainActivity.this,CircleWaveActivity.class));
-//
-//                break;
-//            case R.id.blur_layout:
-//
-//                startActivity(new Intent(MainActivity.this,BlurActivity.class));
-//
-//                break;
-//            case R.id.recycler_layout:
-//
-//                startActivity(new Intent(MainActivity.this,RecyclerActivity.class));
-//
-//                break;
-//            case R.id.scrolling_layout:
-//
-//                startActivity(new Intent(MainActivity.this,ScrollingActivity.class));
-//
-//                break;
-//            case R.id.animator_layout:
-//
-//                startActivity(new Intent(MainActivity.this,AnimatorActivity.class));
-//
-//                break;
-//            case R.id.color_pager_layout:
-//
-//                startActivity(new Intent(MainActivity.this,ColorPagerActivity.class));
-//
-//                break;
-//            case R.id.gradient_layout:
-//
-//                startActivity(new Intent(MainActivity.this,GradientActivity.class));
-//
-//                break;
-//            default:
-//                    break;
-//        }
-//    }
 
     /****************
      *
@@ -693,72 +591,6 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         intent.setData(Uri.parse(uri));
         startActivity(intent);
     }
-
-    @NonNull
-    private SatelliteAdapter getAdapter() {
-        return new SatelliteAdapter() {
-            @Override
-            public View createMenuItem(ViewGroup parent, int index) {
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_menu_item, parent, false);
-
-                FloatingActionButton fab = v.findViewById(R.id.fabs);
-                if (index == 1){
-                    fab.setImageResource(R.drawable.ic_group_work_white_24dp);
-                    fab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            satelliteView.close();
-                            joinQQGroup("a-pWwOHzOhvaQQeYtr9oPbYxuIF7VTT9");
-                        }
-                    });
-                }else if (index == 0){
-                    fab.setImageResource(R.drawable.ic_code_black_24dp);
-                    fab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            satelliteView.close();
-                            startHttp("https://github.com/hujincan/AndView");
-                        }
-                    });
-                }else if (index == 2){
-                    fab.setImageResource(R.drawable.ic_bug_report_black_24dp);
-                    fab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            satelliteView.close();
-                            startHttp("https://nightfarmer.top");
-                        }
-                    });
-                }else if (index == 3){
-                    fab.setImageResource(R.drawable.l);
-                    fab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            satelliteView.close();
-                            startHttp("https://www.lollipoppp.com/");
-                        }
-                    });
-                }
-
-                return v;
-            }
-
-            @Override
-            public View createToggleItem(ViewGroup parent) {
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_menu_toggle, parent, false);
-                FloatingActionButton fab = v.findViewById(R.id.toggle);
-                fab.setImageResource(R.drawable.ic_toys_black_24dp);
-                fabAnimator(fab);
-                return v;
-            }
-
-            @Override
-            public int getCount() {
-                return 4;
-            }
-        };
-    }
-
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
