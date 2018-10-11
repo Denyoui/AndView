@@ -1,5 +1,6 @@
 package org.andcreator.andview.activity;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -14,6 +15,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -36,9 +38,11 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
@@ -103,6 +107,16 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
     private View appsBar;
     private View panelView;
     private boolean isOpen = false;
+
+
+    // 声明一个集合，在后面的代码中用来存储用户拒绝授权的权
+    private List<String> mPermissionList = new ArrayList<>();
+    private String[] permissions;
+
+    private final int WRITE_EXTERNAL_STORAGE = 1;
+    private final int READ_EXTERNAL_STORAGE = 2;
+    private final int READ_CONTACTS = 3;
+    private final int CAMERA = 4;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -176,7 +190,27 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         }
         initView();
 
-        Toast.makeText(this, OtherUtil.getSDLogPath()+"", Toast.LENGTH_LONG).show();
+        //请求权限
+        permissions = new String[]{
+//                Manifest.permission.ACCESS_COARSE_LOCATION,
+//                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.READ_CONTACTS,
+                Manifest.permission.CAMERA
+        };
+
+        mPermissionList.clear();
+        for (int i = 0; i < permissions.length; i++) {
+            if (ContextCompat.checkSelfPermission(MainActivity.this, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
+                mPermissionList.add(permissions[i]);
+            }
+        }
+        if (mPermissionList.isEmpty()) {//未授予的权限为空，表示都授予了
+        } else {//请求权限方法
+            String[] permissions = mPermissionList.toArray(new String[mPermissionList.size()]);//将List转为数组
+            ActivityCompat.requestPermissions(MainActivity.this, permissions, 1);
+        }
     }
 
 
@@ -480,15 +514,37 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Toast.makeText(this, "??????", Toast.LENGTH_SHORT).show();
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
-            case 1:
-                if (resultCode == RESULT_OK){
+            case WRITE_EXTERNAL_STORAGE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    //已授权
+                }else {
+                    Toast.makeText(MainActivity.this,"未得到权限",Toast.LENGTH_SHORT).show();
                 }
                 break;
-            default:
+            case READ_EXTERNAL_STORAGE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    //已授权
+                }else {
+                    Toast.makeText(MainActivity.this,"未得到权限",Toast.LENGTH_SHORT).show();
+                }
                 break;
+            case READ_CONTACTS:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    //已授权
+                }else {
+                    Toast.makeText(MainActivity.this,"未得到权限",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case CAMERA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    //已授权
+                }else {
+                    Toast.makeText(MainActivity.this,"未得到权限",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:break;
         }
     }
 
