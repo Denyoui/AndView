@@ -5,7 +5,7 @@
     <string name="title_activity_circle_wave">涟漪</string>
     <string name="title_activity_blur">高斯模糊</string>
     <string name="title_activity_recycler">卡片堆叠</string>
-    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="title_activity_scrolling">Scrolling</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -115,7 +115,7 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-    <string name="title_activity_contributor">ContributorActivity</string>
+    <string name="title_activity_contributor">贡献者</string>
 
     <string name="registered">注册</string>
     <string name="login">登录</string>
@@ -132,6 +132,22 @@
     <string name="verification">验证</string>
     <string name="verification_code">验证码</string>
     <string name="app_exit">再按一次退出</string>
-    <string name="title_activity_google_plus">GooglePlusActivity</string>
-    <string name="title_activity_open_file">OpenFileActivity</string>
+    <string name="title_activity_google_plus">Google+</string>
+    <string name="title_activity_theme">主题</string>
+
+    <string name="theme_super_violet">紫色</string>
+    <string name="theme_google_red">红色</string>
+    <string name="theme_powder">粉色</string>
+    <string name="theme_bright_yellow">lollipop黄</string>
+    <string name="theme_penicillium">and绿</string>
+    <string name="theme_paint">青色</string>
+    <string name="theme_empty_blue">蓝色</string>
+
+    <string name="button_use">使用</string>
+    <string name="button_used">使用中</string>
+    <string name="title_activity_indicator">Tab指示器</string>
+    <string name="title_activity_contact">联系人</string>
+    <string name="phone_book_enter">确定(%1$s)</string>
+    <string name="title_activity_scratch_card">刮刮卡</string>
+
 </resources>

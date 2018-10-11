@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.andcreator.andview.R;
+import org.andcreator.andview.uilt.SetTheme;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class ScrollingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

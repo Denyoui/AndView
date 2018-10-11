@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.ThemeActivity"
+    tools:showIn="@layout/activity_theme">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <org.andcreator.andview.view.Round
+            android:id="@+id/color_empty_blue"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:roundColor="@color/colorAccent_Blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/color_empty_blue"
+            android:text="@string/theme_empty_blue"
+            android:textColor="@color/colorAccent_Blue" />
+
+        <Button
+            android:id="@+id/theme_empty_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@color/colorAccent_Blue"
+            android:text="@string/button_use"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <org.andcreator.andview.view.Round
+            android:id="@+id/color_super_violet"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:roundColor="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/color_super_violet"
+            android:text="@string/theme_super_violet"
+            android:textColor="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/theme_super_violet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@color/colorAccent"
+            android:text="@string/button_use"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <org.andcreator.andview.view.Round
+            android:id="@+id/color_google_red"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:roundColor="@color/colorAccent_Red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/color_google_red"
+            android:text="@string/theme_google_red"
+            android:textColor="@color/colorAccent_Red" />
+
+        <Button
+            android:id="@+id/theme_google_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@color/colorAccent_Red"
+            android:text="@string/button_use"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <org.andcreator.andview.view.Round
+            android:id="@+id/color_powder"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:roundColor="@color/colorAccent_Pink" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/color_powder"
+            android:text="@string/theme_powder"
+            android:textColor="@color/colorAccent_Pink" />
+
+        <Button
+            android:id="@+id/theme_powder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@color/colorAccent_Pink"
+            android:text="@string/button_use"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <org.andcreator.andview.view.Round
+            android:id="@+id/color_penicillium"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:roundColor="@color/colorAccent_Green" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/color_penicillium"
+            android:text="@string/theme_penicillium"
+            android:textColor="@color/colorAccent_Green" />
+
+        <Button
+            android:id="@+id/theme_penicillium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@color/colorAccent_Green"
+            android:text="@string/button_use"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <org.andcreator.andview.view.Round
+            android:id="@+id/color_paint"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:roundColor="@color/colorAccent_Paint" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/color_paint"
+            android:text="@string/theme_paint"
+            android:textColor="@color/colorAccent_Paint" />
+
+        <Button
+            android:id="@+id/theme_paint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@color/colorAccent_Paint"
+            android:text="@string/button_use"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <org.andcreator.andview.view.Round
+            android:id="@+id/color_bright_yellow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:roundColor="@color/colorAccent_Yellow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/color_bright_yellow"
+            android:text="@string/theme_bright_yellow"
+            android:textColor="@color/colorAccent_Yellow" />
+
+        <Button
+            android:id="@+id/theme_bright_yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@color/colorAccent_Yellow"
+            android:text="@string/button_use"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+</LinearLayout>

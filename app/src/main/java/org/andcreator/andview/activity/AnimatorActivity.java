@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.andcreator.andview.R;
+import org.andcreator.andview.uilt.SetTheme;
 
 public class AnimatorActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,6 +22,7 @@ public class AnimatorActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         setContentView(R.layout.activity_animator);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

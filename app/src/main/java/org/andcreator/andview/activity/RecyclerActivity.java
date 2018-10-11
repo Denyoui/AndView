@@ -12,6 +12,7 @@ import android.view.View;
 import org.andcreator.andview.R;
 import org.andcreator.andview.adapter.RecyclerCardAdapter;
 import org.andcreator.andview.bean.RecyclerCardBen;
+import org.andcreator.andview.uilt.SetTheme;
 import org.andcreator.andview.uilt.SmartLayoutManager;
 import org.andcreator.andview.uilt.SmartSnapHelper;
 
@@ -25,6 +26,7 @@ public class RecyclerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         setContentView(R.layout.activity_recycler);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

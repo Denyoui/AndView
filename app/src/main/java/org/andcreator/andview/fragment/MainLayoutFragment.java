@@ -56,48 +56,8 @@ public class MainLayoutFragment extends Fragment {
         layoutRecycler.setHasFixedSize(true);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         layoutRecycler.setLayoutManager(layoutManager);
-        RecyclerMainLayoutAdapter adapter = new RecyclerMainLayoutAdapter(getLayoutInflater(),loadData());
+        RecyclerMainLayoutAdapter adapter = new RecyclerMainLayoutAdapter(getActivity(),getLayoutInflater(),loadData(),0);
         layoutRecycler.setAdapter(adapter);
-
-        adapter.setClickListener(new RecyclerMainLayoutAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(int position) {
-                switch (position){
-                    case 0:
-                        startActivity(new Intent(getActivity(),ChatActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(getActivity(),ViewPagerActivity.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(getActivity(),RecyclerActivity.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(getActivity(),ScrollingActivity.class));
-                        break;
-                    case 4:
-                        startActivity(new Intent(getActivity(),ColorPagerActivity.class));
-                        break;
-                    case 5:
-                        startActivity(new Intent(getActivity(),GradientActivity.class));
-                        break;
-                    case 7:
-                        startActivity(new Intent(getActivity(),FoldActivity.class));
-                        break;
-                    case 6:
-                        startActivity(new Intent(getActivity(),PixelLauncherActivity.class));
-                        break;
-                    case 9:
-                        startActivity(new Intent(getActivity(),MaterialLoginActivity.class));
-                        break;
-                    case 8:
-                        startActivity(new Intent(getActivity(),GooglePlusActivity.class));
-                        break;
-                        default:
-                            break;
-                }
-            }
-        });
 
         //Android M API
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -122,16 +82,16 @@ public class MainLayoutFragment extends Fragment {
 
     private List<RecyclerMainLayoutBean> loadData() {
         data = new ArrayList<>();
-        data.add(new RecyclerMainLayoutBean("对话界面","简单的模仿环聊对话界面",new int[]{R.drawable.and}));
-        data.add(new RecyclerMainLayoutBean("ViewPager动画","实现ViewPager两边小中间大的动画效果",new int[]{R.drawable.and}));
-        data.add(new RecyclerMainLayoutBean("RecyclerView堆叠滚动","实现卡片堆叠滚动的效果",new int[]{R.drawable.night_farmer}));
-        data.add(new RecyclerMainLayoutBean("ScrollingLayout","一个属性即可实现炫酷的Material Design设计",new int[]{R.drawable.and}));
-        data.add(new RecyclerMainLayoutBean("ViewPager滚动时改变颜色","监听ViewPager并实时改变背景颜色",new int[]{R.drawable.lollipop}));
-        data.add(new RecyclerMainLayoutBean("系列按钮渐变","模仿桌面版Google Plus渐变按钮",new int[]{R.drawable.and}));
-        data.add(new RecyclerMainLayoutBean("Pixel Launcher效果","模仿Pixel Launcher以及获取应用程序列表",new int[]{R.drawable.lollipop}));
-        data.add(new RecyclerMainLayoutBean("Material 顶部布局折叠菜单","点击后下滑整个布局出现选项菜单",new int[]{R.drawable.and,R.drawable.lollipop}));
-        data.add(new RecyclerMainLayoutBean("Google+的图片文字列表","模仿桌面版Google Plus图片文字Item",new int[]{R.drawable.and}));
-        data.add(new RecyclerMainLayoutBean("Material Design 登录与注册","以屏幕中心的单个卡片为主题的登录界面",new int[]{R.drawable.and}));
+        data.add(new RecyclerMainLayoutBean("对话界面","简单的模仿环聊对话界面",new int[]{R.drawable.and},1));
+        data.add(new RecyclerMainLayoutBean("ViewPager动画","实现ViewPager两边小中间大的动画效果",new int[]{R.drawable.and},2));
+        data.add(new RecyclerMainLayoutBean("RecyclerView堆叠滚动","实现卡片堆叠滚动的效果",new int[]{R.drawable.night_farmer},3));
+        data.add(new RecyclerMainLayoutBean("ScrollingLayout","一个属性即可实现炫酷的Material Design设计",new int[]{R.drawable.and},4));
+        data.add(new RecyclerMainLayoutBean("ViewPager滚动时改变颜色","监听ViewPager并实时改变背景颜色",new int[]{R.drawable.lollipop},5));
+        data.add(new RecyclerMainLayoutBean("系列按钮渐变","模仿桌面版Google Plus渐变按钮",new int[]{R.drawable.and},6));
+        data.add(new RecyclerMainLayoutBean("Pixel Launcher效果","模仿Pixel Launcher以及获取应用程序列表",new int[]{R.drawable.lollipop},7));
+        data.add(new RecyclerMainLayoutBean("Material 顶部布局折叠菜单","点击后下滑整个布局出现选项菜单",new int[]{R.drawable.lollipop},8));
+        data.add(new RecyclerMainLayoutBean("Google+的图片文字列表","模仿桌面版Google Plus图片文字Item",new int[]{R.drawable.and},9));
+        data.add(new RecyclerMainLayoutBean("Material Design 登录与注册","以屏幕中心的单个卡片为主题的登录界面",new int[]{R.drawable.and},10));
         return data;
     }
 

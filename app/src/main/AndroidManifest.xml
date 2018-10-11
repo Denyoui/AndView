@@ -3,16 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.andcreator.andview">
 
+    <!-- 获取Activity任务栈 权限 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
     <!-- 往SDCard读写数据权限   storage group -->
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
+    <!-- android:clearTaskOnLaunch="true" -->
+    <!-- android:enabled="true" -->
+    <!-- android:launchMode="singleTask" -->
+    <!-- android:resumeWhilePausing="true" -->
+    <!-- android:screenOrientation="nosensor" -->
+    <!-- android:stateNotNeeded="true" -->
+    <!-- android:taskAffinity="" -->
     <application
         android:name=".uilt.OpenDesign"
         android:allowBackup="true"
@@ -21,17 +31,11 @@
         android:restoreAnyVersion="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".activity.MainActivity"
-            android:clearTaskOnLaunch="true"
-            android:enabled="true"
-            android:launchMode="singleTask"
-            android:resumeWhilePausing="true"
-            android:screenOrientation="nosensor"
-            android:stateNotNeeded="true"
-            android:taskAffinity=""
-            android:theme="@style/AppTheme.Main">
+            android:theme="@style/AppTheme_Start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.ASSIST" />
@@ -39,7 +43,6 @@
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.MONKEY" />
-                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -47,54 +50,6 @@
                 android:name="com.android.systemui.action_assist_icon"
                 android:resource="@drawable/ic_launch" />
         </activity>
-        <activity
-            android:name=".activity.ChatActivity"
-            android:label="@string/title_activity_chat"
-            android:theme="@style/AppTheme.Light" />
-        <activity
-            android:name=".activity.PreviewActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".activity.ViewPagerActivity" />
-        <activity
-            android:name=".activity.CircleWaveActivity"
-            android:label="@string/title_activity_circle_wave"
-            android:theme="@style/DialogActivity" />
-        <activity
-            android:name=".activity.BlurActivity"
-            android:label="@string/title_activity_blur"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.RecyclerActivity"
-            android:label="@string/title_activity_recycler"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.AnimatorActivity"
-            android:label="@string/title_activity_animator"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.ColorPagerActivity"
-            android:label="@string/title_activity_color_pager"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.GradientActivity"
-            android:theme="@style/AppTheme.Light" />
-        <activity
-            android:name=".activity.ContributorActivity"
-            android:label="@string/title_activity_contributor"
-            android:theme="@style/AppTheme.Light" />
-        <activity
-            android:name=".activity.ScreenshotActivity"
-            android:theme="@style/AppTheme.Translucent" />
-        <activity
-            android:name=".activity.FoldActivity"
-            android:theme="@style/AppTheme.Light" />
-        <activity
-            android:name=".activity.PixelLauncherActivity"
-            android:theme="@style/AppTheme.Launcher" />
 
         <service
             android:name=".service.VideoWallPaperService"
@@ -110,28 +65,243 @@
         </service>
 
         <activity
+            android:name=".activity.ChatActivity"
+            android:label="@string/title_activity_chat"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.ChatActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.PreviewActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.PreviewActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.ViewPagerActivity">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.ViewPagerActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.CircleWaveActivity"
+            android:label="@string/title_activity_circle_wave"
+            android:theme="@style/DialogActivity">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.CircleWaveActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.BlurActivity"
+            android:label="@string/title_activity_blur"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.BlurActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.RecyclerActivity"
+            android:label="@string/title_activity_recycler"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.RecyclerActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.ScrollingActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.AnimatorActivity"
+            android:label="@string/title_activity_animator"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.AnimatorActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ColorPagerActivity"
+            android:label="@string/title_activity_color_pager"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.ColorPagerActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.GradientActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.GradientActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ContributorActivity"
+            android:label="@string/title_activity_contributor"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.ContributorActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ScreenshotActivity"
+            android:theme="@style/AppTheme.Translucent">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.ScreenshotActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.FoldActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.FoldActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.PixelLauncherActivity"
+            android:theme="@style/AppTheme.Launcher">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.PixelLauncherActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".activity.SatelliteActivity"
-            android:theme="@style/AppTheme.Light" />
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.SatelliteActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.MaterialLoginActivity"
-            android:theme="@style/AppTheme.Light" />
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.MaterialLoginActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.MaterialRegisterActivity"
-            android:theme="@style/AppTheme.Translucent" />
+            android:theme="@style/AppTheme.Translucent">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.MaterialRegisterActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.GooglePlusActivity"
             android:label="@string/title_activity_google_plus"
-            android:theme="@style/AppTheme.Light" />
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.GooglePlusActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.CircleOneActivity"
-            android:theme="@style/AppTheme.Light" />
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.CircleOneActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.CircleManyActivity"
-            android:theme="@style/AppTheme.Light" />
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.CircleManyActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".activity.OpenFileActivity"
-            android:label="@string/title_activity_open_file"
-            android:theme="@style/AppTheme"></activity>
+            android:name=".activity.PaletteActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.PaletteActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ThemeActivity"
+            android:label="@string/title_activity_theme"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="org.andcreator.andview.activity.ThemeActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.PieActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.RadarActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.SlideSwitchActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ThermometerActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ProgressButtonActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.TabIndicatorActivity"
+            android:label="@string/title_activity_indicator"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ContactActivity"
+            android:label="@string/title_activity_contact"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.LineChartActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ScratchCardActivity"
+            android:label="@string/title_activity_scratch_card"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.BackActivity"
+            android:theme="@style/AppTheme" ></activity>
     </application>
 
 </manifest>

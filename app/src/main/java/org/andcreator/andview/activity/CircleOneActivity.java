@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import org.andcreator.andview.R;
 import org.andcreator.andview.adapter.RecyclerCommentAdapter;
 import org.andcreator.andview.bean.RecyclerCommentBean;
+import org.andcreator.andview.uilt.SetTheme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,7 @@ public class CircleOneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         setContentView(R.layout.activity_circle_one);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

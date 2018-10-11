@@ -22,16 +22,17 @@
             android:positiveButtonText="@null"
             android:title="主题选择"
             android:icon="@drawable/ic_color_lens_attrs_24dp">
-            <intent
-                android:action="com.eajy.materialdesigndemo.SETTING_START_ACTIVITY"
-                android:targetClass="org.andcreator.andview.activity.BlurActivity"
-                android:targetPackage="org.andcreator.andview.activity" />
+
         </Preference>
     </PreferenceCategory>
     <PreferenceCategory android:title="其他">
         <PreferenceScreen
             android:title="开发者人员选项"
             android:icon="@drawable/ic_code_attrs_24dp">
+            <intent
+                android:action="com.eajy.materialdesigndemo.SETTING_START_ACTIVITY"
+                android:targetClass="org.andcreator.andview.activity.ThemeActivity"
+                android:targetPackage="org.andcreator.andview" />
         </PreferenceScreen>
         <PreferenceScreen
             android:title="关于Open Design"

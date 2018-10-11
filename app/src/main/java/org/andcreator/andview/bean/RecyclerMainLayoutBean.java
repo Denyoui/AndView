@@ -7,11 +7,13 @@ public class RecyclerMainLayoutBean {
     private String title;
     private String description;
     private int[] contributorList;
+    private int index;
 
-    public RecyclerMainLayoutBean(String title,String description,int[] contributorList){
+    public RecyclerMainLayoutBean(String title,String description,int[] contributorList,int index){
         this.title = title;
         this.description = description;
         this.contributorList = contributorList;
+        this.index = index;
     }
 
     public String getTitle() {
@@ -26,4 +28,7 @@ public class RecyclerMainLayoutBean {
         return contributorList;
     }
 
+    public int getIndex() {
+        return index;
+    }
 }

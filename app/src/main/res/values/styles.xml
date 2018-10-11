@@ -5,60 +5,13 @@
         <item name="android:textColor">@color/text_color</item>
     </style>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme.Main" parent="AppTheme">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:navigationBarColor">@color/white</item>
-        <item name="android:windowBackground">@drawable/splash</item>
-        <item name="android:textColor">@color/text_color</item>
-        <item name="android:textColorPrimary">@color/black_text</item>
-        <!--<item name="android:windowTranslucentStatus">true</item>-->
-    </style>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme.Light" parent="AppTheme">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:navigationBarColor">@color/white</item>
-        <!--<item name="android:windowTranslucentStatus">true</item>-->
-    </style>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme.Translucent" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:navigationBarColor">@android:color/white</item>
-        <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:textColorPrimary">@color/black_text</item>
-    </style>
-
-
     <style name="BaseWallpaperTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowShowWallpaper">true</item>
     </style>
 
-    <style name="AppTheme.Launcher" parent="@style/BaseWallpaperTheme"></style>
+    <style name="AppTheme.Launcher" parent="@style/BaseWallpaperTheme" />
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -68,6 +21,112 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TextLabel" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorControlActivated">#fff</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Blue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Blue</item>
+        <item name="colorAccent">@color/colorAccent_Blue</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+    </style>
+
+    <style name="CollapsingToolbarTheme" parent="AppTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme_Purple" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+    </style>
+
+    <style name="AppTheme_Red" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Red</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Red</item>
+        <item name="colorAccent">@color/colorAccent_Red</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+    </style>
+
+    <style name="AppTheme_Pink" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Pink</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Pink</item>
+        <item name="colorAccent">@color/colorAccent_Pink</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+    </style>
+
+    <style name="AppTheme_Yellow" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Yellow</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Yellow</item>
+        <item name="colorAccent">@color/colorAccent_Yellow</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+    </style>
+
+    <style name="AppTheme_Green" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Green</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Green</item>
+        <item name="colorAccent">@color/colorAccent_Green</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+    </style>
+
+    <style name="AppTheme_Paint" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Paint</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Paint</item>
+        <item name="colorAccent">@color/colorAccent_Paint</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+    </style>
+
+    <style name="AppTheme_Blue" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Blue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Blue</item>
+        <item name="colorAccent">@color/colorAccent_Blue</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+    </style>
+
+    <style name="blackTextColor">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Dialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <!--<item name="colorAccent">@color/posColor</item>-->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:backgroundDimAmount">0.2</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
 
     <style name="DialogActivity" parent="Theme.AppCompat.Light.Dialog">
         <item name="textColorAlertDialogListItem">@color/colorPrimaryDark</item>
@@ -80,9 +139,286 @@
         <item name="android:windowNoTitle">true</item><!-- Activity无标题-->
     </style>
 
-    <style name="TextLabel" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-        <item name="colorControlActivated">#fff</item>
+    <style name="DialogActivity_Purple" parent="Theme.AppCompat.Light.Dialog">
+        <item name="textColorAlertDialogListItem">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowNoTitle">true</item><!-- Activity无标题-->
     </style>
+
+    <style name="DialogActivity_Red" parent="Theme.AppCompat.Light.Dialog">
+        <item name="textColorAlertDialogListItem">@color/colorPrimaryDark_Red</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Red</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Red</item>
+        <item name="colorAccent">@color/colorAccent_Red</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowNoTitle">true</item><!-- Activity无标题-->
+    </style>
+
+    <style name="DialogActivity_Pink" parent="Theme.AppCompat.Light.Dialog">
+        <item name="textColorAlertDialogListItem">@color/colorPrimaryDark_Pink</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Pink</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Pink</item>
+        <item name="colorAccent">@color/colorAccent_Pink</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowNoTitle">true</item><!-- Activity无标题-->
+    </style>
+
+    <style name="DialogActivity_Yellow" parent="Theme.AppCompat.Light.Dialog">
+        <item name="textColorAlertDialogListItem">@color/colorPrimaryDark_Yellow</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Yellow</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Yellow</item>
+        <item name="colorAccent">@color/colorAccent_Yellow</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowNoTitle">true</item><!-- Activity无标题-->
+    </style>
+
+    <style name="DialogActivity_Green" parent="Theme.AppCompat.Light.Dialog">
+        <item name="textColorAlertDialogListItem">@color/colorPrimaryDark_Green</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Green</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Green</item>
+        <item name="colorAccent">@color/colorAccent_Green</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowNoTitle">true</item><!-- Activity无标题-->
+    </style>
+
+    <style name="DialogActivity_Paint" parent="Theme.AppCompat.Light.Dialog">
+        <item name="textColorAlertDialogListItem">@color/colorPrimaryDark_Green</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Paint</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Paint</item>
+        <item name="colorAccent">@color/colorAccent_Paint</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowNoTitle">true</item><!-- Activity无标题-->
+    </style>
+
+    <style name="DialogActivity_Blue" parent="Theme.AppCompat.Light.Dialog">
+        <item name="textColorAlertDialogListItem">@color/colorPrimaryDark_Blue</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Blue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Blue</item>
+        <item name="colorAccent">@color/colorAccent_Blue</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowNoTitle">true</item><!-- Activity无标题-->
+    </style>
+
+    <style name="Base.AppTheme_Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Blue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Blue</item>
+        <item name="colorAccent">@color/colorAccent_Blue</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+
+    </style>
+
+    <style name="Translucent" parent="Base.AppTheme_Translucent" />
+
+    <style name="AppTheme_Purple_Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="AppTheme_Red_Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Red</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Red</item>
+        <item name="colorAccent">@color/colorAccent_Red</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="AppTheme_Pink_Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Pink</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Pink</item>
+        <item name="colorAccent">@color/colorAccent_Pink</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="AppTheme_Yellow_Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Yellow</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Yellow</item>
+        <item name="colorAccent">@color/colorAccent_Yellow</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="AppTheme_Green_Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Green</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Green</item>
+        <item name="colorAccent">@color/colorAccent_Green</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>>
+    </style>
+
+    <style name="AppTheme_Paint_Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Paint</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Paint</item>
+        <item name="colorAccent">@color/colorAccent_Paint</item>
+        <item name="android:textColor">@color/black_text</item>
+        <item name="android:textColorPrimary">@color/text_color</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="AppTheme_Blue_Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Blue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Blue</item>
+        <item name="colorAccent">@color/colorAccent_Blue</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme_Start" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Blue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Blue</item>
+        <item name="colorAccent">@color/colorAccent_Blue</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:navigationBarColor">@color/white</item>
+
+    </style>
+
+    <style name="AppTheme_Start" parent="Base.AppTheme_Start" />
+
+    <style name="AppTheme_Purple_Start" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme_Red_Start" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Red</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Red</item>
+        <item name="colorAccent">@color/colorAccent_Red</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme_Pink_Start" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Pink</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Pink</item>
+        <item name="colorAccent">@color/colorAccent_Pink</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme_Yellow_Start" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Yellow</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Yellow</item>
+        <item name="colorAccent">@color/colorAccent_Yellow</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme_Green_Start" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Green</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Green</item>
+        <item name="colorAccent">@color/colorAccent_Green</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme_Paint_Start" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Paint</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Paint</item>
+        <item name="colorAccent">@color/colorAccent_Paint</item>
+        <item name="android:textColor">@color/black_text</item>
+        <item name="android:textColorPrimary">@color/text_color</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme_Blue_Start" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary_Blue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Blue</item>
+        <item name="colorAccent">@color/colorAccent_Blue</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+
 
 </resources>

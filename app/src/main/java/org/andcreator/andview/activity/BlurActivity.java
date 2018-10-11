@@ -26,6 +26,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 
 import org.andcreator.andview.R;
+import org.andcreator.andview.uilt.SetTheme;
 import org.reactivestreams.Subscriber;
 
 import io.reactivex.Observable;
@@ -44,6 +45,7 @@ public class BlurActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         setContentView(R.layout.activity_blur);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

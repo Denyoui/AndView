@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import org.andcreator.andview.R;
 import org.andcreator.andview.uilt.FileUtil;
+import org.andcreator.andview.uilt.SetTheme;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -51,7 +52,7 @@ public class ScreenshotActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppTheme_Translucent);
+        SetTheme.setTranslucentTheme(this);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_screenshot);
         //获取当前屏幕的像素点

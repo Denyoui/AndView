@@ -73,7 +73,9 @@ import org.andcreator.andview.fragment.MainEffectFragment;
 import org.andcreator.andview.fragment.MainLayoutFragment;
 import org.andcreator.andview.fragment.MainViewFragment;
 import org.andcreator.andview.uilt.BottomNavigationViewHelper;
+import org.andcreator.andview.uilt.DialogUtil;
 import org.andcreator.andview.uilt.OtherUtil;
+import org.andcreator.andview.uilt.SetTheme;
 import org.andcreator.andview.view.CircleWaveView;
 import org.andcreator.andview.view.SatelliteView;
 
@@ -98,8 +100,6 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
     private FadingBackgroundView fading;
 
     private FloatingActionButton star;
-
-
     private View appsBar;
     private View panelView;
     private boolean isOpen = false;
@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setStartTheme(this);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
 
@@ -208,6 +209,8 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
                 } else {
                     if (floatingActionButton.getLabelText().equals("加入贡献者")){
                         fab_toggle.toggleOff();
+                        Intent intent = new Intent("org.andcreator.andview.activity.ChatActivity");
+                        startActivity(intent);
                     }else if (floatingActionButton.getLabelText().equals("访问开源地址")){
                         fab_toggle.toggleOff();
                     }
@@ -286,13 +289,9 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-//                float alpha = bottomSheet.getHeight()*slideOffset/height;
-//                alpha = alpha>1?1:alpha;
-//                alpha = alpha<0?0:alpha;
                 panelView.setAlpha(slideOffset);
                 appsBar.setAlpha(1-slideOffset*2);
-//                Log.e("onSlide",slideOffset+"");
-//                arrowLineDrawable.setProgress(slideOffset-1);
+                fab_toggle.setTranslationY(-slideOffset*1000);
             }
         });
 
@@ -435,20 +434,6 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         }
     };
 
-    //ViewPager正向滑动动画
-    private void goAnimator(View view){
-        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "alpha", 1,0);
-        animator.setDuration(300);
-        animator.start();
-    }
-
-    //ViewPager反向滑动动画
-    private void backAnimator(View view){
-        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "alpha", 0,1);
-        animator.setDuration(300);
-        animator.start();
-    }
-
     @Override
     public void onBackPressed() {
         if (isOpen){
@@ -460,7 +445,7 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
 
                 if((mNowTime - mPressedTime) > 1450){//比较两次按键时间差
 
-                    Snackbar snackbar = Snackbar.make(fam, R.string.app_exit, Snackbar.LENGTH_SHORT);
+                    Snackbar snackbar = Snackbar.make(mNavigationView, R.string.app_exit, Snackbar.LENGTH_SHORT);
                     View view = snackbar.getView();
                     view.setBackgroundColor(getResources().getColor(R.color.white));
                     snackbar.show();
@@ -492,6 +477,21 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
             }
         }
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Toast.makeText(this, "??????", Toast.LENGTH_SHORT).show();
+        switch (requestCode){
+            case 1:
+                if (resultCode == RESULT_OK){
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
 
     /**
      * 显示的动画
@@ -672,7 +672,9 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
     }
 
     private static SwitchPreference mMistakeTouchPreference;
+    private static Preference mChangeTheme;
     private static final String MISTAKE_TOUCH_MODE_KEY = "example_switch";
+    private static final String CHANGE_THEME_KEY = "theme_type_number";
     private static Bitmap bitmaps;
 
     public static class PrefsFragment extends PreferenceFragment {
@@ -682,6 +684,15 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
             mMistakeTouchPreference = (SwitchPreference) findPreference(MISTAKE_TOUCH_MODE_KEY);
+            mChangeTheme = (Preference) findPreference(CHANGE_THEME_KEY);
+            mChangeTheme.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent(getActivity(),ThemeActivity.class);
+                    startActivityForResult(intent,1);
+                    return true;
+                }
+            });
             mMistakeTouchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -768,5 +779,4 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         }
 
     }
-
 }

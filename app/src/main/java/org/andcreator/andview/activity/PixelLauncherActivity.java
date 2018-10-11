@@ -130,7 +130,7 @@ public class PixelLauncherActivity extends Activity implements LItemTouchCallbac
                 panelView.setAlpha(slideOffset);
                 appsBar.setAlpha(1-slideOffset*2);
 //                Log.e("onSlide",slideOffset+"");
-//                arrowLineDrawable.setProgress(slideOffset-1);
+                arrowLineDrawable.setProgress(slideOffset-1);
             }
         });
     }

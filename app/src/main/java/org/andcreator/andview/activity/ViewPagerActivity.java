@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import org.andcreator.andview.R;
+import org.andcreator.andview.uilt.SetTheme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class ViewPagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         setContentView(R.layout.activity_view_pager);
         mListView = new ArrayList<>();
         mViewPager = findViewById(R.id.view_pager);

@@ -38,6 +38,7 @@ import org.andcreator.andview.bean.RecyclerChatBean;
 import org.andcreator.andview.fragment.ChatCameraFragment;
 import org.andcreator.andview.fragment.ChatEmojiListFragment;
 import org.andcreator.andview.fragment.TestFragment;
+import org.andcreator.andview.uilt.SetTheme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,8 +74,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnLayoutChan
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-
         setContentView(R.layout.activity_chat);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

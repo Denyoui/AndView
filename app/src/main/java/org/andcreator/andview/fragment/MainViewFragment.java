@@ -1,6 +1,7 @@
 package org.andcreator.andview.fragment;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -26,6 +27,7 @@ import org.andcreator.andview.activity.ScrollingActivity;
 import org.andcreator.andview.activity.ViewPagerActivity;
 import org.andcreator.andview.adapter.RecyclerMainLayoutAdapter;
 import org.andcreator.andview.bean.RecyclerMainLayoutBean;
+import org.andcreator.andview.uilt.DialogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,24 +59,8 @@ public class MainViewFragment extends Fragment {
         layoutRecycler.setHasFixedSize(true);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         layoutRecycler.setLayoutManager(layoutManager);
-        RecyclerMainLayoutAdapter adapter = new RecyclerMainLayoutAdapter(getLayoutInflater(),loadData());
+        RecyclerMainLayoutAdapter adapter = new RecyclerMainLayoutAdapter(getActivity(),getLayoutInflater(),loadData(),0);
         layoutRecycler.setAdapter(adapter);
-
-        adapter.setClickListener(new RecyclerMainLayoutAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(int position) {
-                switch (position){
-                    case 0:
-                        startActivity(new Intent(getActivity(),CircleWaveActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(getActivity(),SatelliteActivity.class));
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
 
         //Android M API
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -97,8 +83,24 @@ public class MainViewFragment extends Fragment {
 
     private List<RecyclerMainLayoutBean> loadData() {
         data = new ArrayList<>();
-        data.add(new RecyclerMainLayoutBean("涟漪扩散效果","定时循环向外扩散涟漪",new int[]{R.drawable.night_farmer}));
-        data.add(new RecyclerMainLayoutBean("卫星菜单","适用于RelativeLayout的卫星菜单，支持各种方向",new int[]{R.drawable.night_farmer}));
+        data.add(new RecyclerMainLayoutBean("涟漪扩散效果","定时循环向外扩散涟漪",new int[]{R.drawable.night_farmer},11));
+        data.add(new RecyclerMainLayoutBean("卫星菜单","适用于RelativeLayout的卫星菜单，支持各种方向",new int[]{R.drawable.night_farmer},12));
+        data.add(new RecyclerMainLayoutBean("指针时间选择器","表盘风格的时间选择器",new int[]{R.drawable.lollipop},20));
+        data.add(new RecyclerMainLayoutBean("加载等待动画","3个错开时间的圆环组成的动画",new int[]{R.drawable.lollipop},21));
+        data.add(new RecyclerMainLayoutBean("饼图","圆盘形的数据统计图",new int[]{R.drawable.lollipop},22));
+        data.add(new RecyclerMainLayoutBean("圆环进度图","圆润的进度显示器",new int[]{R.drawable.lollipop},23));
+        data.add(new RecyclerMainLayoutBean("雷达图","雷达形统计图",new int[]{R.drawable.lollipop},24));
+        data.add(new RecyclerMainLayoutBean("滑动开关","定制滑动开关",new int[]{R.drawable.lollipop},25));
+        data.add(new RecyclerMainLayoutBean("温度计","模拟温度计进度",new int[]{R.drawable.lollipop},26));
+        data.add(new RecyclerMainLayoutBean("进度条按钮","点击按钮变为进度条显示进度",new int[]{R.drawable.lollipop},27));
+        data.add(new RecyclerMainLayoutBean("ViewPager下方指示器","ViewPager下方指示器",new int[]{R.drawable.lollipop},28));
+        data.add(new RecyclerMainLayoutBean("Tab顶部小点指示器","Tab顶部小点指示器",new int[]{R.drawable.lollipop},29));
+        data.add(new RecyclerMainLayoutBean("Tab顶部条形指示器","Tab顶部条形指示器",new int[]{R.drawable.lollipop},30));
+        data.add(new RecyclerMainLayoutBean("滚动选择器","自定义上下滚动选择数据",new int[]{R.drawable.lollipop},31));
+        data.add(new RecyclerMainLayoutBean("水滴加载动画","贝塞尔曲线无限滚动",new int[]{R.drawable.lollipop},33));
+        data.add(new RecyclerMainLayoutBean("折线图","继承自TextView的折线图",new int[]{R.drawable.lollipop},34));
+        data.add(new RecyclerMainLayoutBean("刮刮卡","捕获手指涂抹，模拟刮刮卡",new int[]{R.drawable.lollipop},35));
+        data.add(new RecyclerMainLayoutBean("带动画的返回箭头","-^-<-^-",new int[]{R.drawable.lollipop},36));
         return data;
     }
 

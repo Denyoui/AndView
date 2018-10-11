@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PaletteActivity">
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/image_card"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="8dp"
+            app:cardMaxElevation="2dp"
+            app:cardCornerRadius="2dp"
+            app:cardUseCompatPadding="true"
+            android:elevation="2dp"
+            android:layout_centerHorizontal="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:scaleType="centerCrop"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2">
+
+                    <View
+                        android:id="@+id/show_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/whiteLow"/>
+
+                    <TextView
+                        android:id="@+id/rgb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:padding="8dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_gravity="center_vertical"/>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_below="@+id/image_card"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/vibrant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="有活力的"
+                android:textColor="@color/whiteLow"
+                android:backgroundTint="?attr/colorAccent"/>
+
+            <Button
+                android:id="@+id/vibrant_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="有活力的 暗色"
+                android:textColor="@color/whiteLow"
+                android:backgroundTint="?attr/colorAccent"/>
+
+            <Button
+                android:id="@+id/vibrant_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="有活力的 亮色"
+                android:textColor="@color/whiteLow"
+                android:backgroundTint="?attr/colorAccent"/>
+
+            <Button
+                android:id="@+id/muted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="柔和的"
+                android:textColor="@color/whiteLow"
+                android:backgroundTint="?attr/colorAccent"/>
+
+            <Button
+                android:id="@+id/muted_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="柔和的 暗色"
+                android:textColor="@color/whiteLow"
+                android:backgroundTint="?attr/colorAccent"/>
+
+            <Button
+                android:id="@+id/muted_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="柔和的 亮色"
+                android:textColor="@color/whiteLow"
+                android:backgroundTint="?attr/colorAccent"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/choose_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="center|bottom"
+        android:src="@drawable/ic_add_white_24dp"/>
+
+</android.support.design.widget.CoordinatorLayout>

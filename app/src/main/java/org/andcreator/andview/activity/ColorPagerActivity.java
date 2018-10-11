@@ -15,6 +15,7 @@ import android.view.View;
 import org.andcreator.andview.R;
 import org.andcreator.andview.fragment.ViewPagerFragment;
 import org.andcreator.andview.uilt.GradientBgUtil;
+import org.andcreator.andview.uilt.SetTheme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class ColorPagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         setContentView(R.layout.activity_color_pager);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
