@@ -176,6 +176,8 @@ public class ContributorActivity extends AppCompatActivity implements AppBarLayo
                 mListProject.add(new RecyclerMainLayoutBean("过渡色环形圆角进图条","过渡色环形圆角进图条",new int[]{R.drawable.night_farmer},37));
                 mListProject.add(new RecyclerMainLayoutBean("轮子","仅仅是一个轮子",new int[]{R.drawable.night_farmer},38));
                 mListProject.add(new RecyclerMainLayoutBean("显现/隐藏TextView","随机字符显现/隐藏的TextView",new int[]{R.drawable.night_farmer},39));
+                mListProject.add(new RecyclerMainLayoutBean("进度条按钮","镂空的文字反色的加载进度按钮",new int[]{R.drawable.night_farmer},41));
+                mListProject.add(new RecyclerMainLayoutBean("3D环形旋转","3D环形旋转效果",new int[]{R.drawable.night_farmer},42));
 //                mListProject.add(new RecyclerMainLayoutBean());
                 break;
             default:
