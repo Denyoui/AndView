@@ -15,6 +15,13 @@
     <color name="tabUnselectedIconColor">#607d8b</color>
     <color name="gary_line">#DDDDDD</color>
 
+    <color name="downloadButton">#ff8340</color>
+
+    <color name="downloadButton2">#48ab43</color>
+    <color name="downloadButton3">#4963c2</color>
+    <color name="downloadButton4">#ff4242</color>
+    <color name="downloadButton5">#a03db6</color>
+    <color name="downloadButton6">#3babab</color>
 
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimary_Red">#ff1744</color>

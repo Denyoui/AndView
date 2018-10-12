@@ -149,5 +149,6 @@
     <string name="title_activity_contact">联系人</string>
     <string name="phone_book_enter">确定(%1$s)</string>
     <string name="title_activity_scratch_card">刮刮卡</string>
+    <string name="title_activity_icon_package">图标包</string>
 
 </resources>

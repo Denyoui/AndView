@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="icon_pack" translatable="false">
+
+        <item>Chrome</item>
+        <item>电话</item>
+        <item>信息</item>
+        <item>设置</item>
+
+    </string-array>
+
+</resources>

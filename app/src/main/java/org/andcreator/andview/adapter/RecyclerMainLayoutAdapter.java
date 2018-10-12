@@ -28,10 +28,12 @@ import org.andcreator.andview.activity.BlurActivity;
 import org.andcreator.andview.activity.ChatActivity;
 import org.andcreator.andview.activity.CircleWaveActivity;
 import org.andcreator.andview.activity.ColorPagerActivity;
+import org.andcreator.andview.activity.ColorRingActivity;
 import org.andcreator.andview.activity.ContactActivity;
 import org.andcreator.andview.activity.FoldActivity;
 import org.andcreator.andview.activity.GooglePlusActivity;
 import org.andcreator.andview.activity.GradientActivity;
+import org.andcreator.andview.activity.IconPackageActivity;
 import org.andcreator.andview.activity.LineChartActivity;
 import org.andcreator.andview.activity.MaterialLoginActivity;
 import org.andcreator.andview.activity.PaletteActivity;
@@ -39,15 +41,18 @@ import org.andcreator.andview.activity.PieActivity;
 import org.andcreator.andview.activity.PixelLauncherActivity;
 import org.andcreator.andview.activity.ProgressButtonActivity;
 import org.andcreator.andview.activity.RadarActivity;
+import org.andcreator.andview.activity.RandomShowTextActivity;
 import org.andcreator.andview.activity.RecyclerActivity;
 import org.andcreator.andview.activity.SatelliteActivity;
 import org.andcreator.andview.activity.ScratchCardActivity;
 import org.andcreator.andview.activity.ScreenshotActivity;
 import org.andcreator.andview.activity.ScrollingActivity;
 import org.andcreator.andview.activity.SlideSwitchActivity;
+import org.andcreator.andview.activity.SpinningActivity;
 import org.andcreator.andview.activity.TabIndicatorActivity;
 import org.andcreator.andview.activity.ThermometerActivity;
 import org.andcreator.andview.activity.ViewPagerActivity;
+import org.andcreator.andview.activity.WheelActivity;
 import org.andcreator.andview.bean.RecyclerContributorIconBean;
 import org.andcreator.andview.bean.RecyclerMainLayoutBean;
 import org.andcreator.andview.dialog.ClockDialog;
@@ -291,6 +296,24 @@ public class RecyclerMainLayoutAdapter extends RecyclerView.Adapter<RecyclerMain
                             break;
                         case 36:
                             mContext.startActivity(new Intent(mContext,BackActivity.class));
+                            break;
+                        case 37:
+                            mContext.startActivity(new Intent(mContext,ColorRingActivity.class));
+                            break;
+                        case 38:
+                            mContext.startActivity(new Intent(mContext,WheelActivity.class));
+                            break;
+                        case 39:
+                            mContext.startActivity(new Intent(mContext,RandomShowTextActivity.class));
+                            break;
+                        case 40:
+                            mContext.startActivity(new Intent(mContext,IconPackageActivity.class));
+                            break;
+                        case 41:
+                            mContext.startActivity(new Intent(mContext,ProgressButtonActivity.class));
+                            break;
+                        case 42:
+                            mContext.startActivity(new Intent(mContext,SpinningActivity.class));
                             break;
                             default:
                                 break;

@@ -101,6 +101,11 @@ public class MainViewFragment extends Fragment {
         data.add(new RecyclerMainLayoutBean("折线图","继承自TextView的折线图",new int[]{R.drawable.lollipop},34));
         data.add(new RecyclerMainLayoutBean("刮刮卡","捕获手指涂抹，模拟刮刮卡",new int[]{R.drawable.lollipop},35));
         data.add(new RecyclerMainLayoutBean("带动画的返回箭头","-^-<-^-",new int[]{R.drawable.lollipop},36));
+        data.add(new RecyclerMainLayoutBean("过渡色环形圆角进图条","过渡色环形圆角进图条",new int[]{R.drawable.night_farmer},37));
+        data.add(new RecyclerMainLayoutBean("轮子","仅仅是一个轮子",new int[]{R.drawable.night_farmer},38));
+        data.add(new RecyclerMainLayoutBean("显现/隐藏TextView","随机字符显现/隐藏的TextView",new int[]{R.drawable.night_farmer},39));
+        data.add(new RecyclerMainLayoutBean("进度条按钮","镂空的文字反色的加载进度按钮",new int[]{R.drawable.night_farmer},41));
+        data.add(new RecyclerMainLayoutBean("3D环形旋转","3D环形旋转效果",new int[]{R.drawable.night_farmer},42));
         return data;
     }
 

@@ -143,6 +143,7 @@ public class ContributorActivity extends AppCompatActivity implements AppBarLayo
                 mListProject.add(new RecyclerMainLayoutBean("系列按钮渐变","模仿桌面版Google Plus渐变按钮",new int[]{R.drawable.and},6));
                 mListProject.add(new RecyclerMainLayoutBean("Google+的图片文字列表","模仿桌面版Google Plus图片文字Item",new int[]{R.drawable.and},9));
                 mListProject.add(new RecyclerMainLayoutBean("Material Design 登录与注册","以屏幕中心的单个卡片为主题的登录界面",new int[]{R.drawable.and},10));
+                mListProject.add(new RecyclerMainLayoutBean("图标包", "转至桌面设置应用图标包，仅支持部分Launcher", new int[]{R.drawable.and},40));
                 break;
             case "Lollipop":
                 mListProject.add(new RecyclerMainLayoutBean("ViewPager滚动时改变颜色","监听ViewPager并实时改变背景颜色",new int[]{R.drawable.lollipop},5));
@@ -172,6 +173,10 @@ public class ContributorActivity extends AppCompatActivity implements AppBarLayo
                 mListProject.add(new RecyclerMainLayoutBean("高斯模糊", "对图片进行高斯模糊处理", new int[]{R.drawable.night_farmer},13));
                 mListProject.add(new RecyclerMainLayoutBean("涟漪扩散效果","定时循环向外扩散涟漪",new int[]{R.drawable.night_farmer},11));
                 mListProject.add(new RecyclerMainLayoutBean("卫星菜单","适用于RelativeLayout的卫星菜单，支持各种方向",new int[]{R.drawable.night_farmer},12));
+                mListProject.add(new RecyclerMainLayoutBean("过渡色环形圆角进图条","过渡色环形圆角进图条",new int[]{R.drawable.night_farmer},37));
+                mListProject.add(new RecyclerMainLayoutBean("轮子","仅仅是一个轮子",new int[]{R.drawable.night_farmer},38));
+                mListProject.add(new RecyclerMainLayoutBean("显现/隐藏TextView","随机字符显现/隐藏的TextView",new int[]{R.drawable.night_farmer},39));
+//                mListProject.add(new RecyclerMainLayoutBean());
                 break;
             default:
                 break;

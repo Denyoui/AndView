@@ -101,6 +101,7 @@ public class MainEffectFragment extends Fragment {
         data.add(new RecyclerMainLayoutBean("获取图片主题颜色", "Palette库的简单使用", new int[]{R.drawable.and},18));
         data.add(new RecyclerMainLayoutBean("将视频作为壁纸", "使用一段视频作为桌面壁纸", new int[]{R.drawable.and},19));
         data.add(new RecyclerMainLayoutBean("联系人", "获取系统联系人数据", new int[]{R.drawable.lollipop},32));
+        data.add(new RecyclerMainLayoutBean("图标包", "转至桌面设置应用图标包，仅支持部分Launcher", new int[]{R.drawable.and},40));
         return data;
     }
 

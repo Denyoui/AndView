@@ -69,6 +69,7 @@ import com.flask.floatingactionmenu.FadingBackgroundView;
 import com.flask.floatingactionmenu.FloatingActionMenu;
 import com.flask.floatingactionmenu.FloatingActionToggleButton;
 import com.flask.floatingactionmenu.OnFloatingActionMenuSelectedListener;
+import com.stephentuso.welcome.WelcomeHelper;
 
 import org.andcreator.andview.R;
 import org.andcreator.andview.adapter.SatelliteAdapter;
@@ -85,6 +86,11 @@ import org.andcreator.andview.view.SatelliteView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+
+import static org.andcreator.andview.uilt.GetThemeColor.getColorPrimary;
+import static org.andcreator.andview.uilt.GetThemeColor.getDarkColorPrimary;
 
 public class MainActivity extends AppCompatActivity implements Application.OnProvideAssistDataListener {
 
@@ -117,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
     private final int READ_EXTERNAL_STORAGE = 2;
     private final int READ_CONTACTS = 3;
     private final int CAMERA = 4;
+    WelcomeHelper welcomeScreen;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -142,8 +149,16 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
     };
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        welcomeScreen.onSaveInstanceState(outState);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        welcomeScreen = new WelcomeHelper(this, WelcomeActivity.class);
+        welcomeScreen.show(savedInstanceState);
         SetTheme.setStartTheme(this);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
@@ -154,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
 
         background = findViewById(R.id.background);
 
+        //是否加载背景图片
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean("example_switch",true)){
 
@@ -188,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
             getWindow().setStatusBarColor(Color.TRANSPARENT);
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
+
         initView();
 
         //请求权限
@@ -243,14 +260,41 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
                 } else {
                     if (floatingActionButton.getLabelText().equals("加入贡献者")){
                         fab_toggle.toggleOff();
-                        Intent intent = new Intent("org.andcreator.andview.activity.ChatActivity");
-                        startActivity(intent);
+                        joinQQGroup("a-pWwOHzOhvaQQeYtr9oPbYxuIF7VTT9");
                     }else if (floatingActionButton.getLabelText().equals("访问开源地址")){
                         fab_toggle.toggleOff();
+                        startHttp("https://github.com/hujincan/AndView");
                     }
                 }
             }
         });
+
+        //是否加载过
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!preferences.getBoolean("first",false)){
+
+            new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                    .setTarget(R.id.fab_toggle)
+                    .setPrimaryText("Send your first email")
+                    .setSecondaryText("Tap the envelope to start composing your first email")
+                    .setBackgroundColour(getDarkColorPrimary(MainActivity.this))
+                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
+                    {
+                        @Override
+                        public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
+                        {
+                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
+                            {
+                                // User has pressed the prompt target
+                            }
+                        }
+                    })
+                    .show();
+
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+            editor.putBoolean("first",true);
+            editor.apply();
+        }
 
         mNavigationView = findViewById(R.id.navigation);
         mNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -295,7 +339,6 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
                  STATE_EXPANDED： bottom sheet 处于完全展开的状态：当bottom sheet的高度低于CoordinatorLayout容器时，整个bottom sheet都可见；或者CoordinatorLayout容器已经被bottom sheet填满。
                  STATE_HIDDEN ： 默认无此状态（可通过app:behavior_hideable 启用此状态），启用后用户将能通过向下滑动完全隐藏 bottom sheet
                  */
-                View decorView = getWindow().getDecorView();
 //                if(uiFlag==0)
 //                    uiFlag = decorView.getSystemUiVisibility();
                 switch (newState){

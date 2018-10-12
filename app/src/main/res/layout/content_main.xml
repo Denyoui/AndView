@@ -58,16 +58,6 @@
             app:fab_type="mini" />
 
         <com.flask.floatingactionmenu.FloatingActionButton
-            android:id="@+id/deal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:fab_labelText="没想好"
-            app:fab_normal_icon="@drawable/ic_camera_white_24dp"
-            app:fab_colorNormal="?attr/colorAccent"
-            app:fab_type="mini" />
-
-        <com.flask.floatingactionmenu.FloatingActionButton
             android:id="@+id/source"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

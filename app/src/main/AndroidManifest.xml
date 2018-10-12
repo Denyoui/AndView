@@ -29,7 +29,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:restoreAnyVersion="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
@@ -44,6 +43,31 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.MONKEY" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- For Nova -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.teslacoilsw.launcher.THEME" />
+            </intent-filter>
+            <!-- For Apex -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.anddoes.launcher.THEME" />
+            </intent-filter>
+            <!-- For ADW -->
+            <intent-filter>
+                <action android:name="org.adw.launcher.THEMES" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- For Xperia Home -->
+            <intent-filter>
+                <action android:name="com.sonymobile.home.ICON_PACK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
             <meta-data
@@ -300,8 +324,30 @@
             android:name=".activity.ScratchCardActivity"
             android:label="@string/title_activity_scratch_card"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.BackActivity"
-            android:theme="@style/AppTheme" ></activity>
+        <activity
+            android:name=".activity.BackActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.WelcomeActivity"
+            android:theme="@style/WelcomeScreenTheme" />
+        <activity
+            android:name=".activity.ColorRingActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.WheelActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.RandomShowTextActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.IconPackageActivity"
+            android:label="@string/title_activity_icon_package"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ProgressButtonsActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.SpinningActivity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

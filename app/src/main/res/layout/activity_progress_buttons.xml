@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e2ddff"
+    android:orientation="vertical"
+    tools:context=".activity.ProgressButtonsActivity">
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.andcreator.andview.view.ProgressButtonView
+            android:id="@+id/progressView"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
+
+        <org.andcreator.andview.view.ProgressButtonView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/progressView2"
+            android:layout_width="60dp"
+            android:layout_height="30dp" />
+
+        <org.andcreator.andview.view.ProgressButtonView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/progressView3"
+            android:layout_width="200px"
+            android:layout_height="200px" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.andcreator.andview.view.ProgressButtonView
+            android:id="@+id/progressView4"
+            android:layout_width="150px"
+            android:layout_height="60px" />
+
+        <org.andcreator.andview.view.ProgressButtonView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/progressView5"
+            android:layout_width="50dp"
+            android:layout_height="25dp" />
+
+        <org.andcreator.andview.view.ProgressButtonView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/progressView6"
+            android:layout_width="50dp"
+            android:layout_height="25dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
