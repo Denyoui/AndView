@@ -40,6 +40,7 @@ import org.andcreator.andview.activity.PaletteActivity;
 import org.andcreator.andview.activity.PieActivity;
 import org.andcreator.andview.activity.PixelLauncherActivity;
 import org.andcreator.andview.activity.ProgressButtonActivity;
+import org.andcreator.andview.activity.ProgressButtonsActivity;
 import org.andcreator.andview.activity.RadarActivity;
 import org.andcreator.andview.activity.RandomShowTextActivity;
 import org.andcreator.andview.activity.RecyclerActivity;
@@ -310,7 +311,7 @@ public class RecyclerMainLayoutAdapter extends RecyclerView.Adapter<RecyclerMain
                             mContext.startActivity(new Intent(mContext,IconPackageActivity.class));
                             break;
                         case 41:
-                            mContext.startActivity(new Intent(mContext,ProgressButtonActivity.class));
+                            mContext.startActivity(new Intent(mContext,ProgressButtonsActivity.class));
                             break;
                         case 42:
                             mContext.startActivity(new Intent(mContext,SpinningActivity.class));

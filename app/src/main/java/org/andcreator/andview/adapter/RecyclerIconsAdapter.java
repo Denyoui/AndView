@@ -41,7 +41,7 @@ public class RecyclerIconsAdapter extends RecyclerView.Adapter<RecyclerIconsAdap
 
         RecyclerIconsBean iconsBean = mListCard.get(position);
         holder.name.setText(iconsBean.getName());
-        Glide.with(mContext).load(R.drawable.img).into(holder.icon);
+        Glide.with(mContext).load(iconsBean.getIcon()).into(holder.icon);
     }
 
     @Override
