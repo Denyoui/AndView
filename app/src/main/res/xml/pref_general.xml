@@ -27,7 +27,7 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="其他">
         <PreferenceScreen
-            android:title="开发者人员选项"
+            android:title="一些很棒的开源项目"
             android:icon="@drawable/ic_code_attrs_24dp">
             <intent
                 android:action="com.eajy.materialdesigndemo.SETTING_START_ACTIVITY"
@@ -39,7 +39,7 @@
             android:icon="@drawable/ic_error_attrs_24dp">
         </PreferenceScreen>
         <PreferenceScreen
-            android:title="加入我们"
+            android:title="加入贡献者"
             android:icon="@drawable/ic_group_attrs_24dp">
         </PreferenceScreen>
     </PreferenceCategory>
