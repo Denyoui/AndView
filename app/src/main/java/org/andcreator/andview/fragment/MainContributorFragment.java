@@ -81,7 +81,7 @@ public class MainContributorFragment extends Fragment {
 
     private List<RecyclerContributorBean> loadData() {
         data = new ArrayList<>();
-        data.add(new RecyclerContributorBean(R.drawable.and,"and","任何胆敢为爱付出灵魂的人，都拥有改变世界的力量。",0xfff66bb6,"http://andcreator.org/","https://github.com/hujincan","hujincan15369@Gmail.com"));
+        data.add(new RecyclerContributorBean(R.drawable.and,"and","任何胆敢为爱付出灵魂的人，都拥有改变世界的力量。",0xff4caf50,"http://andcreator.org/","https://github.com/hujincan","hujincan15369@Gmail.com"));
         data.add(new RecyclerContributorBean(R.drawable.lollipop,"Lollipop","你必须很努力，才能看上去毫不费力。",0xffff9100,"https://www.lollipoppp.com/","https://github.com/Mr-XiaoLiang","1982568737@qq.com"));
         data.add(new RecyclerContributorBean(R.drawable.night_farmer,"Night Farmer","我就是我，不一样的烟火！",0xff90a4ae,"https://nightfarmer.top","https://github.com/NightFarmer","nightfarmer@163.com"));
         return data;

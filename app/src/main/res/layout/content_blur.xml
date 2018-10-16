@@ -10,7 +10,7 @@
     tools:context=".activity.BlurActivity"
     tools:showIn="@layout/activity_blur"
     android:gravity="center"
-    android:background="@color/colorPrimary">
+    android:background="?attr/colorPrimary">
 
     <ImageView
         android:id="@+id/blur_image"
