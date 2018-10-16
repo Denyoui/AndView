@@ -7,13 +7,17 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -22,9 +26,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 
 import org.andcreator.andview.R;
 import org.andcreator.andview.uilt.ImageUtil;
@@ -32,7 +36,8 @@ import org.andcreator.andview.uilt.SetTheme;
 import org.andcreator.andview.uilt.SnackbarUtil;
 
 import static org.andcreator.andview.uilt.ImageUtil.CHOOSE_PHOTO;
-import static org.andcreator.andview.uilt.ImageUtil.handleImageBeforeKitKat;
+import static org.andcreator.andview.uilt.ImageUtil.drawableToBitmap;
+import static org.andcreator.andview.uilt.ImageUtil.getRealFilePath;
 import static org.andcreator.andview.uilt.ImageUtil.handleImageOnKitKat;
 
 public class PaletteActivity extends AppCompatActivity implements View.OnClickListener{
@@ -75,16 +80,14 @@ public class PaletteActivity extends AppCompatActivity implements View.OnClickLi
         mutedDark.setOnClickListener(this);
         mutedLight.setOnClickListener(this);
 
-        Glide.with(this).load(R.drawable.blur).asBitmap()//强制Glide返回一个Bitmap对象
-                .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation glideAnimation) {
-                        bitmap = resource;
-                        image.setImageBitmap(bitmap);
-                        getPaletteColor();
-                    }
-
-                });
+        Glide.with(this).load(R.drawable.blur).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                bitmap = drawableToBitmap(resource);
+                image.setImageBitmap(bitmap);
+                getPaletteColor();
+            }
+        });
     }
 
     @Override
@@ -153,28 +156,43 @@ public class PaletteActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        switch (requestCode){
-            case CHOOSE_PHOTO :
-                if (Build.VERSION.SDK_INT >= 19){
-                    getBitmap(handleImageOnKitKat(data));
-                }else {
-                    getBitmap(handleImageBeforeKitKat(data));
-                }
-                break;
+
+        if (resultCode != RESULT_CANCELED){
+            switch (requestCode){
+                case CHOOSE_PHOTO :
+                    Uri uri = handleImageOnKitKat(data);
+                    if (getRealFilePath(this,uri).equals("download")){
+                        getBitmap(uri);
+                    }else {
+                        getBitmap(getRealFilePath(this,uri));
+                    }
+
+                    break;
+            }
         }
+    }
+
+    private void getBitmap(Uri uri){
+
+        Glide.with(this).load(uri).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                bitmap = drawableToBitmap(resource);
+                image.setImageBitmap(bitmap);
+                getPaletteColor();
+            }
+        });
     }
 
     private void getBitmap(String path){
 
-        Glide.with(this).load(path).asBitmap()//强制Glide返回一个Bitmap对象
-                .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation glideAnimation) {
-                        bitmap = resource;
-                        image.setImageBitmap(bitmap);
-                        getPaletteColor();
-                    }
-
+        Glide.with(this).load(path).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                bitmap = drawableToBitmap(resource);
+                image.setImageBitmap(bitmap);
+                getPaletteColor();
+            }
         });
     }
 
@@ -207,7 +225,6 @@ public class PaletteActivity extends AppCompatActivity implements View.OnClickLi
                 if (palette.getLightVibrantSwatch() != null){
                     vibrantLight.setBackgroundTintList(ColorStateList.valueOf(palette.getLightVibrantSwatch().getRgb()));
                     vibrantLight.setText("有活力的 亮色");
-                    Toast.makeText(PaletteActivity.this, "没有出错", Toast.LENGTH_SHORT).show();
                 }else {
                     vibrantLight.setText("获取不到");
                 }

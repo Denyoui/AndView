@@ -6,13 +6,19 @@ public class RecyclerContributorBean {
     private String name;
     private String motto;
     private int color;
+    private String blog;
+    private String github;
+    private String mail;
 
-    public RecyclerContributorBean(int icon,String name,String motto,int color){
+    public RecyclerContributorBean(int icon,String name,String motto,int color,String blog,String github,String mail){
 
         this.icon = icon;
         this.name = name;
         this.motto = motto;
         this.color = color;
+        this.blog = blog;
+        this.github = github;
+        this.mail = mail;
     }
 
     public int getIcon() {
@@ -29,5 +35,17 @@ public class RecyclerContributorBean {
 
     public int getColor() {
         return color;
+    }
+
+    public String getBlog() {
+        return blog;
+    }
+
+    public String getGithub() {
+        return github;
+    }
+
+    public String getMail() {
+        return mail;
     }
 }

@@ -19,6 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="请转至启动器设置启用图标包"/>
+        android:text="请转至启动器设置启用图标包"
+        android:layout_gravity="center"/>
 
 </FrameLayout>

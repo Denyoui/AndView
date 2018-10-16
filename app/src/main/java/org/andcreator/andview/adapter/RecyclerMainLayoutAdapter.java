@@ -201,7 +201,7 @@ public class RecyclerMainLayoutAdapter extends RecyclerView.Adapter<RecyclerMain
                         case 17:
                             AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(mContext);
                             builder.setTitle("#错误报告");
-                            builder.setMessage("点击测试按钮使应用崩溃，崩溃日志会保存在sdcard根目录");
+                            builder.setMessage("点击测试按钮使应用崩溃，崩溃日志会保存在/sdcard/OpenLog");
                             builder.setPositiveButton("测试", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

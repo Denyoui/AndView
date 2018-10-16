@@ -3,6 +3,8 @@ package org.andcreator.andview.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +12,8 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,9 +25,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 
 import org.andcreator.andview.R;
 import org.andcreator.andview.uilt.SetTheme;
@@ -32,6 +36,8 @@ import org.reactivestreams.Subscriber;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+
+import static org.andcreator.andview.uilt.ImageUtil.drawableToBitmap;
 
 public class BlurActivity extends AppCompatActivity {
 
@@ -53,18 +59,15 @@ public class BlurActivity extends AppCompatActivity {
         blurImage = findViewById(R.id.blur_image);
         adjust = findViewById(R.id.adjust);
         number = findViewById(R.id.number);
-        Glide.with(this).load(R.drawable.blur).asBitmap()//强制Glide返回一个Bitmap对象
-                .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation glideAnimation) {
 
-                        showBitmap = resource;
-                        bitmap = resource;
-                        blurImage.setImageBitmap(bitmap);
-                    }
-
-                });
-
+        Glide.with(this).load(R.drawable.blur).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                showBitmap = drawableToBitmap(resource);
+                bitmap = drawableToBitmap(resource);
+                blurImage.setImageBitmap(bitmap);
+            }
+        });
 
         adjust.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

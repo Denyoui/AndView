@@ -2,14 +2,24 @@ package org.andcreator.andview.uilt;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.DownloadManager;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
+
+import java.io.File;
 
 public class ImageUtil {
 
@@ -23,55 +33,179 @@ public class ImageUtil {
     }
 
     public void openAlbum() {
-        Intent intent = new Intent("android.intent.action.GET_CONTENT");
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setType("image/*");
         mActivity.startActivityForResult(intent,CHOOSE_PHOTO);
     }
 
-    //系统版本在4.4以下的处理方式
-    public static String handleImageBeforeKitKat(Intent data) { //直接将Uri传入到getImagePath()即可
-        Uri uri = data.getData();
-        String imagePath = getImagePath(uri,null);
-        return imagePath;
-    }
-
     //系统版本在4.4及以上处理图片方式
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    public static String handleImageOnKitKat(Intent data) { //将Uri封装进行解析
-        String imagePath = null;
+    public static Uri handleImageOnKitKat(Intent data) { //将Uri封装进行解析
         Uri uri = data.getData();
-        //判断Uri类型
-        if (DocumentsContract.isDocumentUri(mContext,uri)) {
-            //如果是documents 类型的Uri,则通过document id处理
-            String docId = DocumentsContract.getDocumentId(uri);
-            if ("com.android.providers.media.documents".equals(uri.getAuthority())){
-                String id = docId.split(":")[1];//解析出数字格式的id
-                String selection = MediaStore.Images.Media._ID+"="+id;
-                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,selection);
-            }else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())){
-                Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"),Long.valueOf(docId));
-                imagePath = getImagePath(contentUri,null);
-            }
-        }else if ("content".equalsIgnoreCase(uri.getScheme())){
-            //如果是content类型的Uri，则使用普通方式处理
-            imagePath = getImagePath(uri,null);
-        }else if ("file".equalsIgnoreCase(uri.getScheme())){
-            //如果是File类型的Uri，则直接获取图片路径
-            imagePath = uri.getPath();
-        }
-        return imagePath;
+        return uri;
     }
 
-    private static String getImagePath(Uri uri, String selection) {
-        String path = null;
-        //通过Uri和selection来获取图片真实路径
-        Cursor cursor = mContext.getContentResolver().query(uri,null,selection,null,null);
-        if (cursor != null){
-            if (cursor.moveToFirst()){
-                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+    public static String getRealFilePath(Context context, final Uri uri) {
+        if (null == uri)
+            return null;
+        final String scheme = uri.getScheme();
+        Log.e("shceme:ssssssssssss",scheme);
+        String data = null;
+        if (scheme == null)
+            data = uri.getPath();
+        else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
+            data = uri.getPath();
+        } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
+            Cursor cursor = context.getContentResolver().query(uri, new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null);
+            if (null != cursor) {
+                if (cursor.moveToFirst()) {
+                    int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                    if (index > -1) {
+                        data = cursor.getString(index);
+                    }
+
+                }
+                cursor.close();
             }
-            cursor.close();
+            if (data == null) {
+                data = getImageAbsolutePath(context, uri);
+            }
+
         }
-        return path;
+        return data;
     }
+
+    public static Uri getUri(final String filePath) {
+        return Uri.fromFile(new File(filePath));
+    }
+
+    /**
+     * 根据Uri获取图片绝对路径，解决Android4.4以上版本Uri转换
+     *
+     * @param context
+     * @param imageUri
+     * @author yaoxing
+     * @date 2014-10-12
+     */
+    @TargetApi(19)
+    public static String getImageAbsolutePath(Context context, Uri imageUri) {
+        if (context == null || imageUri == null)
+            return null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(context, imageUri)) {
+            if (isExternalStorageDocument(imageUri)) {
+                String docId = DocumentsContract.getDocumentId(imageUri);
+                String[] split = docId.split(":");
+                String type = split[0];
+                if ("primary".equalsIgnoreCase(type)) {
+                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                }
+            } else if (isDownloadsDocument(imageUri)) {
+                String id = DocumentsContract.getDocumentId(imageUri);
+                Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+//                return getDataColumn(context, contentUri, null, null);
+                return "download";
+            } else if (isMediaDocument(imageUri)) {
+                String docId = DocumentsContract.getDocumentId(imageUri);
+                String[] split = docId.split(":");
+                String type = split[0];
+                Uri contentUri = null;
+                if ("image".equals(type)) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+                String selection = MediaStore.Images.Media._ID + "=?";
+                String[] selectionArgs = new String[] { split[1] };
+                return getDataColumn(context, contentUri, selection, selectionArgs);
+            }
+        } // MediaStore (and general)
+        else if ("content".equalsIgnoreCase(imageUri.getScheme())) {
+            // Return the remote address
+            if (isGooglePhotosUri(imageUri))
+                return imageUri.getLastPathSegment();
+            return getDataColumn(context, imageUri, null, null);
+        }
+        // File
+        else if ("file".equalsIgnoreCase(imageUri.getScheme())) {
+            return imageUri.getPath();
+        }
+        return null;
+    }
+
+    public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
+
+        Cursor cursor = null;
+        String column = MediaStore.Images.Media.DATA;
+
+        String[] projection = { column };
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                int index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+    /**
+     * @param uri
+     *                The Uri to check.
+     * @return Whether the Uri authority is ExternalStorageProvider.
+     */
+    public static boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri
+     *                The Uri to check.
+     * @return Whether the Uri authority is DownloadsProvider.
+     */
+    public static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri
+     *                The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    public static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri
+     *                The Uri to check.
+     * @return Whether the Uri authority is Google Photos.
+     */
+    public static boolean isGooglePhotosUri(Uri uri) {
+        return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+
+        int w = drawable.getIntrinsicWidth();
+        int h = drawable.getIntrinsicHeight();
+        System.out.println("Drawable转Bitmap");
+        Bitmap.Config config =
+                drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                        : Bitmap.Config.RGB_565;
+        Bitmap bitmap = Bitmap.createBitmap(w, h, config);
+        //注意，下面三行代码要用到，否则在View或者SurfaceView里的canvas.drawBitmap会看不到图
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, w, h);
+        drawable.draw(canvas);
+
+        return bitmap;
+    }
+
 }

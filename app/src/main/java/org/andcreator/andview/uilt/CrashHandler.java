@@ -103,8 +103,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     public static String outputTextFile(String value,String name){
         try{
-            String file = OtherUtil.getSDLogPath()+"/"+name+".txt";
-            File path = new File(OtherUtil.getSDLogPath());
+            String file = OtherUtil.getSDLogPath()+"/OpenLog/"+name+".txt";
+            File path = new File(OtherUtil.getSDLogPath()+"/OpenLog");
             if(!path.exists()){
                 path.mkdirs();
             }

@@ -4,34 +4,30 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.Application;
 import android.content.ClipboardManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -39,32 +35,28 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.Pair;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnticipateInterpolator;
-import android.view.animation.AnticipateOvershootInterpolator;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.flask.floatingactionmenu.FadingBackgroundView;
 import com.flask.floatingactionmenu.FloatingActionMenu;
 import com.flask.floatingactionmenu.FloatingActionToggleButton;
@@ -72,25 +64,27 @@ import com.flask.floatingactionmenu.OnFloatingActionMenuSelectedListener;
 import com.stephentuso.welcome.WelcomeHelper;
 
 import org.andcreator.andview.R;
-import org.andcreator.andview.adapter.SatelliteAdapter;
 import org.andcreator.andview.fragment.MainContributorFragment;
 import org.andcreator.andview.fragment.MainEffectFragment;
 import org.andcreator.andview.fragment.MainLayoutFragment;
 import org.andcreator.andview.fragment.MainViewFragment;
 import org.andcreator.andview.uilt.BottomNavigationViewHelper;
-import org.andcreator.andview.uilt.DialogUtil;
-import org.andcreator.andview.uilt.OtherUtil;
+import org.andcreator.andview.uilt.ImageUtil;
 import org.andcreator.andview.uilt.SetTheme;
-import org.andcreator.andview.view.CircleWaveView;
-import org.andcreator.andview.view.SatelliteView;
 
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.BlurTransformation;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
-import static org.andcreator.andview.uilt.GetThemeColor.getColorPrimary;
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 import static org.andcreator.andview.uilt.GetThemeColor.getDarkColorPrimary;
+import static org.andcreator.andview.uilt.ImageUtil.CHOOSE_PHOTO;
+import static org.andcreator.andview.uilt.ImageUtil.drawableToBitmap;
+import static org.andcreator.andview.uilt.ImageUtil.getRealFilePath;
+import static org.andcreator.andview.uilt.ImageUtil.handleImageOnKitKat;
 
 public class MainActivity extends AppCompatActivity implements Application.OnProvideAssistDataListener {
 
@@ -99,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
 
     private Bitmap bitmap;
     private ImageView background;
+    private ImageView logo;
     private ViewPager mViewPager;
     private BottomNavigationView mNavigationView;
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -124,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
     private final int READ_CONTACTS = 3;
     private final int CAMERA = 4;
     WelcomeHelper welcomeScreen;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -170,41 +167,10 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         background = findViewById(R.id.background);
 
         //是否加载背景图片
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.getBoolean("example_switch",true)){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
 
-            Glide.with(MainActivity.this).load(R.drawable.background_a).asBitmap()//强制Glide返回一个Bitmap对象
-                    .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-                        @Override
-                        public void onResourceReady(Bitmap resource, GlideAnimation glideAnimation) {
-
-                            bitmap = resource;
-
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        bitmap  = blurBitmap(MainActivity.this, bitmap, 20.0f, 1f);
-                                        Message msg = new Message();
-                                        msg.what = 1;
-                                        handler.sendMessage(msg);
-
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }).start();
-
-                        }
-
-                    });
-
-        }else {
-
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-        }
-
+        loadBackground();
         initView();
 
         //请求权限
@@ -270,8 +236,8 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         });
 
         //是否加载过
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!preferences.getBoolean("first",false)){
+
+        if (!sharedPreferences.getBoolean("first",false)){
 
             new MaterialTapTargetPrompt.Builder(MainActivity.this)
                     .setTarget(R.id.fab_toggle)
@@ -290,8 +256,6 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
                         }
                     })
                     .show();
-
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
             editor.putBoolean("first",true);
             editor.apply();
         }
@@ -344,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
                 switch (newState){
                     case BottomSheetBehavior.STATE_COLLAPSED:
                         isOpen = false;
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                         if (sharedPreferences.getBoolean("example_switch",true)){
                             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
                         }else {
@@ -372,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
             }
         });
 
-        ImageView logo = findViewById(R.id.logo);
+        logo = findViewById(R.id.logo);
         Glide.with(this).load(R.drawable.logo).into(logo);
 
         PrefsFragment prefsFragment = new PrefsFragment();
@@ -385,9 +349,20 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
                     if (background.getVisibility() == View.GONE){
                         background.setVisibility(View.VISIBLE);
                     }
-                    background.setImageBitmap(bitmap);
+
+                    Glide.with(MainActivity.this)
+                            .load(bitmap)
+                            .apply(bitmapTransform(new BlurTransformation(23)))
+                            .into(background);
                 }else if (msg == 2){
                     background.setVisibility(View.GONE);
+                }else if (msg == 3){
+
+                    Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                    String transitionIcon = MainActivity.this.getString(R.string.transition_logo);
+                    Pair<View, String> p1 = Pair.create((View) logo,transitionIcon);
+                    ActivityOptionsCompat transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, p1);
+                    startActivity(intent,transitionActivityOptions.toBundle());
                 }
             }
         });
@@ -419,6 +394,7 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
 
     }
 
+    //ViewPager监听
     private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -511,6 +487,7 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         }
     };
 
+    //返回键监听
     @Override
     public void onBackPressed() {
         if (isOpen){
@@ -555,7 +532,26 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode){
+            case CHOOSE_PHOTO :
+                if (resultCode == RESULT_OK){
+                    Uri uri = handleImageOnKitKat(data);
+                    if (getRealFilePath(this,uri).equals("download")){
+                        editor.putString("img",handleImageOnKitKat(data).toString());
+                        editor.apply();
+                    }else {
+                        editor.putString("img",getRealFilePath(this,uri));
+                        editor.apply();
+                    }
+                    loadBackground();
+                }
+                break;
+        }
+    }
 
+    //权限授权情况
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
@@ -685,12 +681,14 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         }
     }
 
+    //打开链接
     private void startHttp(String uri){
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(uri));
         startActivity(intent);
     }
 
+    //ViewPager适配器
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -733,47 +731,48 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         }
     }
 
+    private void loadBackground(){
+        if (sharedPreferences.getBoolean("example_switch",true)){
+            if (sharedPreferences.getString("img","").equals("")){
+                Glide.with(MainActivity.this)
+                        .load(R.drawable.background_a)
+                        .apply(bitmapTransform(new BlurTransformation(23)))
+                        .into(background);
+            }else {
 
-    /**
-     * 处理bitmap为高斯模糊图片
-     * @param context 上下文
-     * @param image   图片源
-     * @param radius  模糊程度 0到25之间
-     * @param scale   图片缩放比例, 该值越小越节省内存,模糊程度越敏感,0到1之间
-     * @return 模糊的图片
-     */
-    public static Bitmap blurBitmap(Context context, Bitmap image, float radius, float scale) {
+                if (sharedPreferences.getString("img","").contains("content://")){
 
-        // 计算图片缩小后的长宽
-        int width = Math.round(image.getWidth() * scale);
-        int height = Math.round(image.getHeight() * scale);
-        // 将缩小后的图片做为预渲染的图片。
-        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
-        // 创建一张渲染后的输出图片。
-        Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
-        // 创建RenderScript内核对象
-        RenderScript rs = RenderScript.create(context);
-        // 创建一个模糊效果的RenderScript的工具对象
-        ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
-        // 由于RenderScript并没有使用VM来分配内存,所以需要使用Allocation类来创建和分配内存空间。
-        // 创建Allocation对象的时候其实内存是空的,需要使用copyTo()将数据填充进去。
-        Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
-        Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
-        // 设置渲染的模糊程度, 25f是最大模糊度
-        blurScript.setRadius(radius);
-        // 设置blurScript对象的输入内存
-        blurScript.setInput(tmpIn);
-        // 将输出数据保存到输出内存中
-        blurScript.forEach(tmpOut);
-        // 将数据填充到Allocation中
-        tmpOut.copyTo(outputBitmap);
-        return outputBitmap;
+                    Glide.with(MainActivity.this)
+                            .load(Uri.parse(sharedPreferences.getString("img", "")))
+                            .apply(bitmapTransform(new BlurTransformation(23)))
+                            .into(background);
+                }else {
+
+                    Glide.with(MainActivity.this)
+                            .load(sharedPreferences.getString("img", ""))
+                            .apply(bitmapTransform(new BlurTransformation(23)))
+                            .into(background);
+                }
+            }
+        }else {
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        }
     }
 
+    /**
+     * 设置页面
+     */
     private static SwitchPreference mMistakeTouchPreference;
     private static Preference mChangeTheme;
+    private static PreferenceScreen mImage;
+    private static PreferenceScreen mJoin;
+    private static PreferenceScreen mAbout;
     private static final String MISTAKE_TOUCH_MODE_KEY = "example_switch";
     private static final String CHANGE_THEME_KEY = "theme_type_number";
+    private static final String IMG = "img";
+    private static final String JOIN = "join";
+    private static final String ABOUT = "about";
     private static Bitmap bitmaps;
 
     public static class PrefsFragment extends PreferenceFragment {
@@ -783,7 +782,17 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
             mMistakeTouchPreference = (SwitchPreference) findPreference(MISTAKE_TOUCH_MODE_KEY);
-            mChangeTheme = (Preference) findPreference(CHANGE_THEME_KEY);
+            mChangeTheme = findPreference(CHANGE_THEME_KEY);
+            mImage = (PreferenceScreen) findPreference(IMG);
+            mJoin = (PreferenceScreen) findPreference(JOIN);
+            mAbout = (PreferenceScreen) findPreference(ABOUT);
+
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            if (!sharedPreferences.getBoolean("example_switch",true)){
+                mImage.setShouldDisableView(true);
+                mImage.setEnabled(false);
+            }
+
             mChangeTheme.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
@@ -792,42 +801,54 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
                     return true;
                 }
             });
+
             mMistakeTouchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @SuppressLint("CheckResult")
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     if (mMistakeTouchPreference.isChecked() != (Boolean)newValue) {
                         boolean value = (Boolean)(newValue);
                         mMistakeTouchPreference.setChecked(value);
 
+                        mImage.setShouldDisableView(!value);
+                        mImage.setEnabled(value);
+
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
                         if (sharedPreferences.getBoolean("example_switch",true)){
+                            if (sharedPreferences.getString("img","").equals("")){
 
-                            Glide.with(getActivity()).load(R.drawable.background_a).asBitmap()//强制Glide返回一个Bitmap对象
-                                    .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-                                        @Override
-                                        public void onResourceReady(Bitmap resource, GlideAnimation glideAnimation) {
+                                Glide.with(getActivity()).load(R.drawable.background_a).into(new SimpleTarget<Drawable>() {
+                                    @Override
+                                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                                        bitmaps = drawableToBitmap(resource);
+                                        Message msg = new Message();
+                                        msg.what = 1;
+                                        handlers.sendMessage(msg);
+                                    }
+                                });
 
-                                            bitmaps = resource;
-
-                                            new Thread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    try {
-                                                        bitmaps  = blurBitmap(getActivity(), bitmaps, 20.0f, 1f);
-                                                        Message msg = new Message();
-                                                        msg.what = 1;
-                                                        handlers.sendMessage(msg);
-
-                                                    } catch (Exception e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-                                            }).start();
-
-                                        }
-
-                                    });
-
+                            }else if (sharedPreferences.getString("img","").contains("content://")){
+                                Glide.with(getActivity()).load(Uri.parse(sharedPreferences.getString("img",""))).into(new SimpleTarget<Drawable>() {
+                                    @Override
+                                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                                        bitmaps = drawableToBitmap(resource);
+                                        Message msg = new Message();
+                                        msg.what = 1;
+                                        handlers.sendMessage(msg);
+                                    }
+                                });
+                            }else {
+                                Glide.with(getActivity()).load(sharedPreferences.getString("img","")).into(new SimpleTarget<Drawable>() {
+                                    @Override
+                                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                                        bitmaps = drawableToBitmap(resource);
+                                        Message msg = new Message();
+                                        msg.what = 1;
+                                        handlers.sendMessage(msg);
+                                    }
+                                });
+                            }
                         }else {
                             Message msg = new Message();
                             msg.what = 2;
@@ -840,6 +861,48 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
                     return true;
                 }
             });
+
+            mImage.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    new ImageUtil(getActivity(),getActivity()).openAlbum();
+                    return true;
+                }
+            });
+
+            mAbout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    if (clickListener != null){
+                        //传参
+                        clickListener.onClick(3,null);
+                    }
+                    return true;
+                }
+            });
+
+            mJoin.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+
+                    Intent intent = new Intent();
+                    intent.setData(Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + "a-pWwOHzOhvaQQeYtr9oPbYxuIF7VTT9"));
+                    // 此Flag可根据具体产品需要自定义，如设置，则在加群界面按返回，返回手Q主界面，不设置，按返回会返回到呼起产品界面    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    try {
+                        startActivity(intent);
+                    } catch (Exception e) {
+
+                        ClipboardManager cmb = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                        cmb.setText("677026563");
+
+                        // 未安装手Q或安装的版本不支持
+                        Toast.makeText(getActivity(), "未安装QQ或安装的版本不支持,群号已复制到剪贴板", Toast.LENGTH_SHORT).show();
+                    }
+
+                    return true;
+                }
+            });
+
         }
 
         @SuppressLint("HandlerLeak")

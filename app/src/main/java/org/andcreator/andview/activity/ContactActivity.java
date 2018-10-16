@@ -61,7 +61,8 @@ public class ContactActivity extends AppCompatActivity
     @SuppressLint("StringFormatMatches")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); SetTheme.setTheme(this);
+        super.onCreate(savedInstanceState);
+        SetTheme.setTheme(this);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         setContentView(R.layout.activity_contact);
         Toolbar toolbar = findViewById(R.id.toolbar);

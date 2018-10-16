@@ -16,6 +16,9 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
+    <!-- <permission -->
+    <!-- android:name="android.permission.ACCESS_ALL_DOWNLOADS" -->
+    <!-- android:protectionLevel="signature"/> -->
     <!-- android:clearTaskOnLaunch="true" -->
     <!-- android:enabled="true" -->
     <!-- android:launchMode="singleTask" -->
@@ -74,6 +77,16 @@
                 android:name="com.android.systemui.action_assist_icon"
                 android:resource="@drawable/ic_launch" />
         </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="org.andcreator.andview.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
         <service
             android:name=".service.VideoWallPaperService"
@@ -346,7 +359,14 @@
         <activity
             android:name=".activity.ProgressButtonsActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.SpinningActivity"
+        <activity
+            android:name=".activity.SpinningActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.OpenSourceActivity"
+            android:label="@string/title_activity_open_source"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.AboutActivity"
             android:theme="@style/AppTheme"></activity>
     </application>
 

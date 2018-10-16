@@ -134,13 +134,14 @@
         <item name="colorPrimary">@color/colorPrimary_Blue</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_Blue</item>
         <item name="colorAccent">@color/colorAccent_Blue</item>
+        <item name="android:textColorPrimary">@color/black_text</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:navigationBarColor">@android:color/white</item>
         <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:textColorPrimary">@color/black_text</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
 
     </style>
 
@@ -156,7 +157,8 @@
         <item name="android:windowLightNavigationBar">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="AppTheme_Red_Translucent" parent="Theme.AppCompat.Light.NoActionBar">
@@ -170,7 +172,8 @@
         <item name="android:windowLightNavigationBar">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="AppTheme_Pink_Translucent" parent="Theme.AppCompat.Light.NoActionBar">
@@ -263,7 +266,10 @@
 
     </style>
 
-    <style name="AppTheme_Start" parent="Base.AppTheme_Start" />
+    <style name="AppTheme_Start" parent="Base.AppTheme_Start" >
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 
     <style name="AppTheme_Purple_Start" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>

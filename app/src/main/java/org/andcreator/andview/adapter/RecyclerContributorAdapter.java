@@ -2,6 +2,7 @@ package org.andcreator.andview.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -68,7 +69,7 @@ public class RecyclerContributorAdapter extends RecyclerView.Adapter<RecyclerCon
         private TextView motto;
         private ImageView blog;
         private ImageView github;
-        private ImageView googlePlus;
+        private ImageView mail;
         private Button more;
 
         //构造器
@@ -81,7 +82,7 @@ public class RecyclerContributorAdapter extends RecyclerView.Adapter<RecyclerCon
             motto = itemView.findViewById(R.id.motto);
             blog = itemView.findViewById(R.id.blog);
             github = itemView.findViewById(R.id.github);
-            googlePlus = itemView.findViewById(R.id.google_plus);
+            mail = itemView.findViewById(R.id.mail);
             more = itemView.findViewById(R.id.more);
         }
 
@@ -105,7 +106,61 @@ public class RecyclerContributorAdapter extends RecyclerView.Adapter<RecyclerCon
                     mContext.startActivity(intent);
                 }
             });
+
+            more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(mContext, ContributorActivity.class);
+                    intent.putExtra("icon",bean.getIcon());
+                    intent.putExtra("name",bean.getName());
+                    intent.putExtra("color",bean.getColor());
+                    intent.putExtra("motto",bean.getMotto());
+                    mContext.startActivity(intent);
+                }
+            });
+
+            blog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startHttp(bean.getBlog());
+                }
+            });
+
+            github.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startHttp(bean.getGithub());
+                }
+            });
+
+            mail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sendEmail(bean.getMail());
+                }
+            });
         }
+    }
+
+    private void sendEmail(String mail){
+        // 必须明确使用mailto前缀来修饰邮件地址,如果使用
+// intent.putExtra(Intent.EXTRA_EMAIL, email)，结果将匹配不到任何应用
+        Uri uri = Uri.parse("mailto:"+mail);
+        String[] email = {mail};
+        Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+        intent.putExtra(Intent.EXTRA_CC, email); // 抄送人
+        intent.putExtra(Intent.EXTRA_SUBJECT, "致开发者"); // 主题
+        intent.putExtra(Intent.EXTRA_TEXT, ""); // 正文
+        mContext.startActivity(Intent.createChooser(intent, "请选择邮件类应用"));
+    }
+
+
+    //打开链接
+    private void startHttp(String uri){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(uri));
+        mContext.startActivity(intent);
     }
 
 }

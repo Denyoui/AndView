@@ -342,7 +342,11 @@
 
     </style>
 
-    <style name="AppTheme_Start" parent="Base.AppTheme_Start" />
+    <style name="AppTheme_Start" parent="Base.AppTheme_Start">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
 
     <style name="AppTheme_Purple_Start" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>

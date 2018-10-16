@@ -45,6 +45,7 @@ public class ContributorActivity extends AppCompatActivity implements AppBarLayo
     private boolean mIsTheTitleContainerVisible = true;
 
     private TextView titleName;
+    private TextView text;
 
     private RelativeLayout mTitleContainer;
     AppBarLayout mAppBarLayout;
@@ -66,6 +67,7 @@ public class ContributorActivity extends AppCompatActivity implements AppBarLayo
     private void initView() {
         mAppBarLayout = findViewById(R.id.appBar_layout);
         mAppBarLayout.addOnOffsetChangedListener(this);
+        text = findViewById(R.id.text);
 
         Intent intent = getIntent();
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -121,6 +123,7 @@ public class ContributorActivity extends AppCompatActivity implements AppBarLayo
                 mListApps.add(new RecyclerAppsBean(R.drawable.app_11,"指南针","https://www.coolapk.com/apk/com.liang.lollipop.lcompass"));
                 break;
             case "Night Farmer":
+                text.setVisibility(View.GONE);
                 break;
                 default:
                     break;
