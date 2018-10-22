@@ -2,7 +2,6 @@ package org.andcreator.andview.activity;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -35,12 +34,7 @@ public class BackActivity extends AppCompatActivity implements CheckBox.OnChecke
         super.onCreate(savedInstanceState);
         SetTheme.setTheme(this);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-        }else {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
-
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         setContentView(R.layout.activity_back);
         ((CheckBox)findViewById(R.id.lback_check)).setOnCheckedChangeListener(this);
         ((CheckBox)findViewById(R.id.lback_auto)).setOnCheckedChangeListener(this);

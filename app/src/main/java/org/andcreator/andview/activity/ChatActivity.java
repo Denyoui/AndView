@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
@@ -76,12 +75,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnLayoutChan
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SetTheme.setTheme(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-        }else {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
-
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         setContentView(R.layout.activity_chat);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

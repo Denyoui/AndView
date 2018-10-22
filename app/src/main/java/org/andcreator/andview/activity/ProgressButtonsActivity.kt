@@ -1,7 +1,6 @@
 package org.andcreator.andview.activity
 
 import android.graphics.Color
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -17,11 +16,7 @@ class ProgressButtonsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         SetTheme.setTheme(this)
         window.statusBarColor = Color.TRANSPARENT
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-        } else {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        }
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
         setContentView(R.layout.activity_progress_buttons)
         progressView.color = ContextCompat.getColor(this, R.color.downloadButton)
         progressView.borderWidth = 5f

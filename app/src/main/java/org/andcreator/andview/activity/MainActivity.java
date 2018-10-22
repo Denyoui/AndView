@@ -155,16 +155,17 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
         super.onCreate(savedInstanceState);
         SetTheme.setStartTheme(this);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-        }else {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
-
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         setContentView(R.layout.activity_main);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+
+        if (!sharedPreferences.getBoolean("welcome",false)){
+            startActivity(new Intent(MainActivity.this,WelcomeActivity.class));
+            editor.putBoolean("welcome",true);
+            editor.apply();
+        }
 
         background = findViewById(R.id.background);
 
@@ -228,8 +229,8 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
                         joinQQGroup("a-pWwOHzOhvaQQeYtr9oPbYxuIF7VTT9");
                     }else if (floatingActionButton.getLabelText().equals("访问开源地址")){
                         fab_toggle.toggleOff();
-                        startHttp("https://github.com/hujincan/AndView");
-//                        startActivity(new Intent(MainActivity.this,WelcomeActivity.class));
+//                        startHttp("https://github.com/hujincan/AndView");
+                        startActivity(new Intent(MainActivity.this,WelcomeActivity.class));
                     }
                 }
             }
@@ -372,12 +373,6 @@ public class MainActivity extends AppCompatActivity implements Application.OnPro
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-
-        if (!sharedPreferences.getBoolean("welcome",false)){
-            startActivity(new Intent(MainActivity.this,WelcomeActivity.class));
-            editor.putBoolean("welcome",true);
-            editor.apply();
-        }
 
         if (mSectionsPagerAdapter != null){
             //ViewPager加载完成，得到同一对象的Fragment
