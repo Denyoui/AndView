@@ -38,6 +38,8 @@
         <item name="android:textColorPrimary">@color/black_text</item>
     </style>
 
+    <style name="AppTheme" parent="Base.AppTheme" />
+
     <style name="CollapsingToolbarTheme" parent="AppTheme">
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
@@ -347,6 +349,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="AppTheme_Start_Default" parent="Base.AppTheme_Start" />
 
     <style name="AppTheme_Purple_Start" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>

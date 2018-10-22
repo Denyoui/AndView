@@ -12,6 +12,7 @@ public class WelcomeActivity extends com.stephentuso.welcome.WelcomeActivity {
 
     @Override
     protected WelcomeConfiguration configuration() {
+        setTheme(R.style.WelcomeScreenTheme);
         return new WelcomeConfiguration.Builder(this)
                 .defaultBackgroundColor(R.color.colorAccent_Blue)
                 .page(new TitlePage(R.drawable.welcome_1,

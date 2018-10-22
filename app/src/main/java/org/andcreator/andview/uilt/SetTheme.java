@@ -88,7 +88,7 @@ public class SetTheme {
                 context.setTheme(themeId);
                 break;
             default:
-                context.setTheme(R.style.AppTheme_Start);
+                context.setTheme(R.style.AppTheme_Start_Default);
                 break;
         }
     }
