@@ -3,8 +3,6 @@ package org.andcreator.andview.activity;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,10 +12,10 @@ import android.widget.TextView;
 import org.andcreator.andview.R;
 import org.andcreator.andview.uilt.SetTheme;
 
+/**
+ * @author hawvu
+ */
 public class AnimatorActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private Button button1,button2,button5,button6,button7,button8;
-    private TextView button3,button4,button9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +25,8 @@ public class AnimatorActivity extends AppCompatActivity implements View.OnClickL
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Button button1,button2,button5,button6,button7,button8;
+        TextView button3,button4,button9;
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);

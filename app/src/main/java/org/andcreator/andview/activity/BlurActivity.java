@@ -30,8 +30,19 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 
 import org.andcreator.andview.R;
+import org.andcreator.andview.service.UPThreadPoolManager;
 import org.andcreator.andview.uilt.SetTheme;
 import org.reactivestreams.Subscriber;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -44,9 +55,7 @@ public class BlurActivity extends AppCompatActivity {
     private ImageView blurImage;
     private SeekBar adjust;
     private TextView number;
-    private Bitmap showBitmap;
     private Bitmap bitmap;
-    private int num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,33 +72,20 @@ public class BlurActivity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.blur).into(new SimpleTarget<Drawable>() {
             @Override
             public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                showBitmap = drawableToBitmap(resource);
                 bitmap = drawableToBitmap(resource);
                 blurImage.setImageBitmap(bitmap);
             }
         });
 
         adjust.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, final int i, boolean b) {
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Log.e("55555555555",i+"");
-                            Bitmap bitmap1 = blurBitmap(BlurActivity.this, bitmap, 25f*i/100, 1f);
-                            showBitmap = bitmap1;
-                            num = (int) (25f*i/100);
-                            Message msg = new Message();
-                            msg.what = 1;
-                            handler.sendMessage(msg);
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
+                Bitmap bitmaps = blurBitmap(BlurActivity.this, bitmap, 25f*i/100, 1f);
+                if (bitmaps != null){
+                    blurImage.setImageBitmap(bitmaps);
+                    number.setText(25f*i/100+"");
+                }
 
             }
 
@@ -105,21 +101,6 @@ public class BlurActivity extends AppCompatActivity {
         });
     }
 
-    @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case 1:
-                    blurImage.setImageBitmap(showBitmap);
-                    number.setText(num+"");
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
-
     /**
      * 处理bitmap为高斯模糊图片
      * @param context 上下文
@@ -130,29 +111,32 @@ public class BlurActivity extends AppCompatActivity {
      */
     public static Bitmap blurBitmap(Context context, Bitmap image, float radius, float scale) {
         Log.e("66666666666",radius+"");
-        // 计算图片缩小后的长宽
-        int width = Math.round(image.getWidth() * scale);
-        int height = Math.round(image.getHeight() * scale);
-        // 将缩小后的图片做为预渲染的图片。
-        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
-        // 创建一张渲染后的输出图片。
-        Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
-        // 创建RenderScript内核对象
-        RenderScript rs = RenderScript.create(context);
-        // 创建一个模糊效果的RenderScript的工具对象
-        ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
-        // 由于RenderScript并没有使用VM来分配内存,所以需要使用Allocation类来创建和分配内存空间。
-        // 创建Allocation对象的时候其实内存是空的,需要使用copyTo()将数据填充进去。
-        Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
-        Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
-        // 设置渲染的模糊程度, 25f是最大模糊度
-        blurScript.setRadius(radius);
-        // 设置blurScript对象的输入内存
-        blurScript.setInput(tmpIn);
-        // 将输出数据保存到输出内存中
-        blurScript.forEach(tmpOut);
-        // 将数据填充到Allocation中
-        tmpOut.copyTo(outputBitmap);
-        return outputBitmap;
+        if (0 < radius && radius<= 25){
+            // 计算图片缩小后的长宽
+            int width = Math.round(image.getWidth() * scale);
+            int height = Math.round(image.getHeight() * scale);
+            // 将缩小后的图片做为预渲染的图片。
+            Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
+            // 创建一张渲染后的输出图片。
+            Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
+            // 创建RenderScript内核对象
+            RenderScript rs = RenderScript.create(context);
+            // 创建一个模糊效果的RenderScript的工具对象
+            ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+            // 由于RenderScript并没有使用VM来分配内存,所以需要使用Allocation类来创建和分配内存空间。
+            // 创建Allocation对象的时候其实内存是空的,需要使用copyTo()将数据填充进去。
+            Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
+            Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
+            // 设置渲染的模糊程度, 25f是最大模糊度
+            blurScript.setRadius(radius);
+            // 设置blurScript对象的输入内存
+            blurScript.setInput(tmpIn);
+            // 将输出数据保存到输出内存中
+            blurScript.forEach(tmpOut);
+            // 将数据填充到Allocation中
+            tmpOut.copyTo(outputBitmap);
+            return outputBitmap;
+        }
+        return null;
     }
 }

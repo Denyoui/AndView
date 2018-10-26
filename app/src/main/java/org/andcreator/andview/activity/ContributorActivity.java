@@ -2,23 +2,18 @@ package org.andcreator.andview.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,6 +31,9 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * @author hawvu
+ */
 public class ContributorActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR = 0.9f;
@@ -50,15 +48,16 @@ public class ContributorActivity extends AppCompatActivity implements AppBarLayo
     private RelativeLayout mTitleContainer;
     AppBarLayout mAppBarLayout;
 
-    private ArrayList<RecyclerAppsBean> mListApps;
-    private ArrayList<RecyclerMainLayoutBean> mListProject;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SetTheme.setTheme(this);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        }else {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
         setContentView(R.layout.activity_contributor);
 
         initView();
@@ -105,7 +104,7 @@ public class ContributorActivity extends AppCompatActivity implements AppBarLayo
     }
 
     private List<RecyclerAppsBean> listApps(String name) {
-        mListApps = new ArrayList<>();
+        ArrayList<RecyclerAppsBean> mListApps = new ArrayList<>();
         switch (name){
             case "and":
                 mListApps.add(new RecyclerAppsBean(R.drawable.app_1,"任务卡片","https://www.coolapk.com/apk/org.andcreator.taskcard"));
@@ -132,7 +131,7 @@ public class ContributorActivity extends AppCompatActivity implements AppBarLayo
     }
 
     private List<RecyclerMainLayoutBean> loadProject(String name) {
-        mListProject = new ArrayList<>();
+        ArrayList<RecyclerMainLayoutBean> mListProject = new ArrayList<>();
         switch (name){
             case "and":
                 mListProject.add(new RecyclerMainLayoutBean("ObjectAnimator", "ObjectAnimator的简单使用演示", new int[]{R.drawable.and},14));
@@ -181,7 +180,6 @@ public class ContributorActivity extends AppCompatActivity implements AppBarLayo
                 mListProject.add(new RecyclerMainLayoutBean("显现/隐藏TextView","随机字符显现/隐藏的TextView",new int[]{R.drawable.night_farmer},39));
                 mListProject.add(new RecyclerMainLayoutBean("进度条按钮","镂空的文字反色的加载进度按钮",new int[]{R.drawable.night_farmer},41));
                 mListProject.add(new RecyclerMainLayoutBean("3D环形旋转","3D环形旋转效果",new int[]{R.drawable.night_farmer},42));
-//                mListProject.add(new RecyclerMainLayoutBean());
                 break;
             default:
                 break;

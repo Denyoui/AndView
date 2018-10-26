@@ -82,6 +82,7 @@ public class BackActivity extends AppCompatActivity implements CheckBox.OnChecke
                     handler.sendEmptyMessageDelayed(200,10);
                 }
                 break;
+                default:break;
         }
     }
 
@@ -103,9 +104,11 @@ public class BackActivity extends AppCompatActivity implements CheckBox.OnChecke
                     }else if(pro<0){
                         b = true;
                     }
-                    if(auto)
-                        handler.sendEmptyMessageDelayed(200,10);
+                    if(auto) {
+                        handler.sendEmptyMessageDelayed(200, 10);
+                    }
                     break;
+                default:break;
             }
             super.handleMessage(msg);
         }
@@ -127,6 +130,7 @@ public class BackActivity extends AppCompatActivity implements CheckBox.OnChecke
                 imgDraw.setBackType(LBackDrawable.BackType.SWIPING);
                 barDraw.setBackType(LBackDrawable.BackType.SWIPING);
                 break;
+            default:break;
         }
     }
 
